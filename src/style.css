@@ -1,96 +1,755 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-primary: #f06236;
+  --color-secondary: #fcc809;
+  --color-background: #010101;
+  --color-surface: #414342;
+  --color-text-primary: #fdfdfd;
+  --color-text-secondary: #414342;
+  --font-main: "Space Grotesk", sans-serif;
+  --font-secondary: "Inter", sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   margin: 0;
+  background: var(--color-background);
+  font-family: var(--font-main);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure Background Canvas stays at the very back */
+#bg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ensure Foreground Canvas (3D Models) stays in front of the text */
+#fg-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none; /* Let clicks pass through if needed, though we control orbit manually if active */
+}
+
+/* --- Loading Screen Overlay --- */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  /* background-color: var(--color-primary); Handled by rects now */
+  pointer-events: auto; /* Block interactions */
+}
+
+#loading-ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Let clicks pass if needed */
+  z-index: 10000;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+#loading-ui.fade-out {
+  opacity: 0;
+}
+
+#loading-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15rem; /* Adjust as needed */
+  max-width: 80%;
+}
+
+#loading-progress {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  font-family: var(--font-secondary);
+  font-size: 5rem;
+  font-weight: 600;
+  color: #de4d21;
+  will-change: transform;
+}
+
+.loading-rect {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  will-change: opacity;
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.loading-rect.reveal-active {
+  opacity: 0;
+}
+
+/* --- UI Overlay Wrapper --- */
+#ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1; /* Sits between bg-canvas (0) and fg-canvas (2) */
+  pointer-events: none; /* Let mouse events pass through to 3D scene */
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Re-enable pointer events for interactive elements */
+nav,
+.cta-button,
+a {
+  pointer-events: auto;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* --- Top Navigation --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  width: 100%;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
-.card {
-  padding: 2em;
+.logo img {
+  width: 4rem;
 }
 
-.read-the-docs {
-  color: #888;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  letter-spacing: 0.05em;
+  margin-left: auto;
+  margin-right: 3rem;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.nav-links a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition:
+    opacity 0.3s ease,
+    color 0.3s ease;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+.slash {
+  color: rgba(253, 253, 253, 0.4);
+}
+
+.cta-button {
+  background: var(--color-primary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-primary);
+  padding: 0.8rem 1.5rem;
+  font-family: var(--font-main);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.cta-button:hover {
+  background: var(--color-text-primary);
+  color: var(--color-primary);
+  border-color: var(--color-text-primary);
+}
+
+/* --- Main Content Layout --- */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 4rem;
+  position: relative;
+}
+
+/* Subtitle with bars */
+.subtitle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  background: var(--color-primary);
+  color: var(--color-text-primary);
+  width: fit-content;
+  padding: 0.2rem 0.5rem;
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.decoration-bars {
+  display: inline-block;
+  width: 4px;
+  height: 12px;
+  border-left: 2px solid var(--color-text-primary);
+  border-right: 2px solid var(--color-text-primary);
+}
+
+/* Hero Title */
+.hero-title {
+  font-size: 3vw;
+  max-width: 40%;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.hero-title .dash {
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+/* Floating Data Annotations */
+.data-annotation {
+  position: absolute;
+  font-family: monospace;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.1em;
+}
+
+.tag-1 {
+  left: 5vw;
+  top: 45vh;
+}
+
+.tag-2 {
+  left: 10vw;
+  top: 30vh;
+}
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+
+/* --- Unique Asymmetric Menu Toggle --- */
+.menu-toggle {
+  display: none; /* Hidden on desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 2rem;
+  height: 1.2rem;
+  position: relative;
+  z-index: 9999;
+  flex-direction: column;
+  align-items: flex-end; /* Right-align bars */
+  justify-content: space-between;
+  padding: 0;
+}
+
+.menu-toggle .bar {
+  display: block;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: 0;
+  transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  transform-origin: center;
+}
+
+/* Short top bar — 40% width, right-aligned */
+.menu-toggle .bar--short {
+  width: 40%;
+}
+
+/* Full-width bottom bar */
+.menu-toggle .bar--long {
+  width: 100%;
+}
+
+/* Hover: short bar extends to full width */
+.menu-toggle:hover .bar--short {
+  width: 100%;
+}
+
+/* --- Fullscreen Mobile Menu Overlay --- */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-background);
+  z-index: 9998; /* Must sit above Three.js canvases which are direct body children */
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  overflow-y: auto;
+
+  /* Clip-path reveal: hidden from top */
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.mobile-menu.is-open {
+  clip-path: inset(0 0 0 0);
+}
+
+/* --- Menu Header (Logo + Close Button) --- */
+.mobile-menu__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-shrink: 0;
+}
+
+.mobile-menu__logo img {
+  height: 2rem;
+  width: auto;
+}
+
+.menu-close {
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: 0.25rem;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-close:hover {
+  color: var(--color-primary);
+  transform: rotate(90deg);
+}
+
+/* --- Menu Links --- */
+.mobile-menu__links {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+.mobile-menu__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(253, 253, 253, 0.1);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  pointer-events: auto;
+
+  /* Staggered fade-in */
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    color 0.3s ease;
+}
+
+.mobile-menu__item:last-child {
+  border-bottom: 1px solid rgba(253, 253, 253, 0.1);
+}
+
+/* Stagger delays when menu is open */
+.mobile-menu.is-open .mobile-menu__item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu.is-open .mobile-menu__item:nth-child(1) {
+  transition-delay: 0.15s;
+}
+.mobile-menu.is-open .mobile-menu__item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.mobile-menu.is-open .mobile-menu__item:nth-child(3) {
+  transition-delay: 0.25s;
+}
+.mobile-menu.is-open .mobile-menu__item:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.mobile-menu.is-open .mobile-menu__item:nth-child(5) {
+  transition-delay: 0.35s;
+}
+.mobile-menu.is-open .mobile-menu__item:nth-child(6) {
+  transition-delay: 0.4s;
+}
+
+.mobile-menu__item:hover {
+  color: var(--color-primary);
+}
+
+.mobile-menu__label {
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  opacity: 0.5;
+}
+
+.mobile-menu__title {
+  font-family: var(--font-main);
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* --- Menu Footer (Social Links) --- */
+.mobile-menu__footer {
+  flex-shrink: 0;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.mobile-menu__footer-label {
+  display: block;
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  opacity: 0.5;
+  margin-bottom: 0.75rem;
+}
+
+.mobile-menu__socials {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.mobile-menu__socials a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+  pointer-events: auto;
+}
+
+.mobile-menu__socials a:hover {
+  color: var(--color-primary);
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE (≤768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  .nav-links,
+  .cta-button {
+    display: none;
   }
-  a:hover {
-    color: #747bff;
+
+  .menu-toggle {
+    display: flex;
   }
-  button {
-    background-color: #f9f9f9;
+
+  .navbar {
+    padding: 1.5rem 2rem;
   }
+
+  .hero-title {
+    font-size: 7vw;
+    max-width: 90%;
+  }
+
+  .content {
+    padding: 0 2rem;
+  }
+
+  /* Who Am I — stack vertically */
+  .who-am-i__inner {
+    flex-direction: column;
+    gap: 3rem;
+    padding: 4rem 2rem;
+  }
+
+  .who-am-i__heading {
+    font-size: 3rem;
+  }
+
+  .who-am-i__stats {
+    gap: 2rem;
+  }
+
+  .who-am-i__stat-number {
+    font-size: 2.5rem;
+  }
+
+  /* What I Offer — stack vertically, no pin */
+  .what-i-offer {
+    height: auto;
+    padding: 4rem 2rem;
+  }
+
+  .offer-track {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .offer-card {
+    min-width: unset;
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   WHO AM I SECTION
+   ============================================================ */
+.who-am-i {
+  position: relative;
+  background-color: var(--color-background);
+  overflow: hidden;
+}
+
+.who-am-i__inner {
+  display: flex;
+  gap: 6rem;
+  padding: 8rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.who-am-i__left {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.who-am-i__label {
+  display: block;
+  font-family: var(--font-secondary);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.who-am-i__heading {
+  font-family: var(--font-main);
+  font-size: 5rem;
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+}
+
+.who-am-i__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding-top: 0.5rem;
+}
+
+.who-am-i__bio {
+  border-left: 2px solid var(--color-primary);
+  padding-left: 2rem;
+}
+
+.who-am-i__text {
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.who-am-i__text--muted {
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+.who-am-i__stats {
+  display: flex;
+  gap: 4rem;
+}
+
+.who-am-i__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.who-am-i__stat-number {
+  font-family: var(--font-main);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+}
+
+.who-am-i__stat-label {
+  font-family: var(--font-secondary);
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================
+   WHAT I OFFER SECTION (Horizontal Scroll)
+   ============================================================ */
+.what-i-offer {
+  position: relative;
+  height: 100vh;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem;
+  overflow: hidden;
+}
+
+.offer-header {
+  margin-bottom: 3rem;
+  flex-shrink: 0;
+}
+
+.offer-label {
+  display: block;
+  font-family: var(--font-secondary);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.offer-heading {
+  font-family: var(--font-main);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.offer-track {
+  display: flex;
+  gap: 1.5rem;
+  padding-left: 25%; /* 25% whitespace at start */
+  will-change: transform;
+}
+
+.offer-card {
+  width: 340px;
+  min-width: 340px;
+  max-width: 340px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border-radius: 0;
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.offer-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.offer-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.offer-card__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offer-card__icon svg {
+  stroke: var(--color-text-primary);
+}
+
+.offer-card__number {
+  font-family: var(--font-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.offer-card__title {
+  font-family: var(--font-main);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+}
+
+.offer-card__divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.offer-card__desc {
+  font-family: var(--font-secondary);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
 }
