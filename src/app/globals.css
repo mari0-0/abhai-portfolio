@@ -1,4 +1,27 @@
 :root {
+  /* Typography Variables */
+  --text-xs: 0.65rem;
+  --text-sm: 0.7rem;
+  --text-md: 0.75rem;
+  --text-base: 0.8rem;
+  --text-lg: 0.85rem;
+  --text-xl: 1rem;
+  --text-2xl: 1.15rem;
+  --text-3xl: 1.2rem;
+  --text-4xl: 1.4rem;
+  --text-5xl: 1.5rem;
+  --text-6xl: 2.4rem;
+  --text-7xl: 2.5rem;
+  --text-8xl: 3rem;
+  --text-9xl: 3.5rem;
+  --text-10xl: 5rem;
+  --text-fluid-1: clamp(1.4rem, 2.5vw, 2rem);
+  --text-fluid-2: clamp(2.5rem, 12vw, 5rem);
+  --text-fluid-3: clamp(3rem, 8vw, 6rem);
+  --text-fluid-4: clamp(4rem, 10vw, 9rem);
+  --text-vw-sm: 3vw;
+  --text-vw-lg: 7vw;
+
   --color-primary: #f06236;
   --color-secondary: #fcc809;
   --color-background: #010101;
@@ -24,6 +47,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
 /* Ensure Background Canvas stays at the very back */
 #bg-canvas {
   position: absolute;
@@ -39,7 +81,8 @@ body {
   top: 0;
   left: 0;
   z-index: 2;
-  pointer-events: none; /* Let clicks pass through if needed, though we control orbit manually if active */
+  pointer-events: none;
+  /* Let clicks pass through if needed, though we control orbit manually if active */
 }
 
 /* --- Loading Screen Overlay --- */
@@ -51,7 +94,8 @@ body {
   height: 100vh;
   z-index: 9999;
   /* background-color: var(--color-primary); Handled by rects now */
-  pointer-events: auto; /* Block interactions */
+  pointer-events: auto;
+  /* Block interactions */
 }
 
 #loading-ui {
@@ -60,7 +104,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Let clicks pass if needed */
+  pointer-events: none;
+  /* Let clicks pass if needed */
   z-index: 10000;
   transition: opacity 0.5s ease;
   opacity: 1;
@@ -75,7 +120,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 15rem; /* Adjust as needed */
+  width: 15rem;
+  /* Adjust as needed */
   max-width: 80%;
 }
 
@@ -84,7 +130,7 @@ body {
   bottom: 2rem;
   left: 0;
   font-family: var(--font-secondary);
-  font-size: 5rem;
+  font-size: var(--text-10xl);
   font-weight: 600;
   color: #de4d21;
   will-change: transform;
@@ -109,8 +155,10 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 1; /* Sits between bg-canvas (0) and fg-canvas (2) */
-  pointer-events: none; /* Let mouse events pass through to 3D scene */
+  z-index: 1;
+  /* Sits between bg-canvas (0) and fg-canvas (2) */
+  pointer-events: none;
+  /* Let mouse events pass through to 3D scene */
   display: flex;
   flex-direction: column;
 }
@@ -145,7 +193,7 @@ a {
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-size: 0.85rem;
+  font-size: var(--text-lg);
   font-weight: 500;
   letter-spacing: 0.05em;
   margin-left: auto;
@@ -175,7 +223,7 @@ a {
   border: 1px solid var(--color-primary);
   padding: 0.8rem 1.5rem;
   font-family: var(--font-main);
-  font-size: 0.75rem;
+  font-size: var(--text-md);
   font-weight: 600;
   letter-spacing: 0.1em;
   cursor: pointer;
@@ -212,7 +260,7 @@ a {
 }
 
 .subtitle {
-  font-size: 0.75rem;
+  font-size: var(--text-md);
   font-weight: 600;
   letter-spacing: 0.05em;
 }
@@ -227,7 +275,7 @@ a {
 
 /* Hero Title */
 .hero-title {
-  font-size: 3vw;
+  font-size: var(--text-vw-sm);
   max-width: 40%;
   font-weight: 500;
   line-height: 1.1;
@@ -245,7 +293,7 @@ a {
 .data-annotation {
   position: absolute;
   font-family: monospace;
-  font-size: 0.65rem;
+  font-size: var(--text-xs);
   color: rgba(255, 255, 255, 0.4);
   letter-spacing: 0.1em;
 }
@@ -266,7 +314,8 @@ a {
 
 /* --- Unique Asymmetric Menu Toggle --- */
 .menu-toggle {
-  display: none; /* Hidden on desktop */
+  display: none;
+  /* Hidden on desktop */
   background: none;
   border: none;
   cursor: pointer;
@@ -275,7 +324,8 @@ a {
   position: relative;
   z-index: 9999;
   flex-direction: column;
-  align-items: flex-end; /* Right-align bars */
+  align-items: flex-end;
+  /* Right-align bars */
   justify-content: space-between;
   padding: 0;
 }
@@ -312,7 +362,8 @@ a {
   width: 100vw;
   height: 100vh;
   background-color: var(--color-background);
-  z-index: 9998; /* Must sit above Three.js canvases which are direct body children */
+  z-index: 9998;
+  /* Must sit above Three.js canvases which are direct body children */
   display: flex;
   flex-direction: column;
   padding: 2rem;
@@ -402,18 +453,23 @@ a {
 .mobile-menu.is-open .mobile-menu__item:nth-child(1) {
   transition-delay: 0.15s;
 }
+
 .mobile-menu.is-open .mobile-menu__item:nth-child(2) {
   transition-delay: 0.2s;
 }
+
 .mobile-menu.is-open .mobile-menu__item:nth-child(3) {
   transition-delay: 0.25s;
 }
+
 .mobile-menu.is-open .mobile-menu__item:nth-child(4) {
   transition-delay: 0.3s;
 }
+
 .mobile-menu.is-open .mobile-menu__item:nth-child(5) {
   transition-delay: 0.35s;
 }
+
 .mobile-menu.is-open .mobile-menu__item:nth-child(6) {
   transition-delay: 0.4s;
 }
@@ -424,7 +480,7 @@ a {
 
 .mobile-menu__label {
   font-family: var(--font-secondary);
-  font-size: 0.75rem;
+  font-size: var(--text-md);
   font-weight: 400;
   letter-spacing: 0.02em;
   opacity: 0.5;
@@ -432,7 +488,7 @@ a {
 
 .mobile-menu__title {
   font-family: var(--font-main);
-  font-size: 2.5rem;
+  font-size: var(--text-7xl);
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -448,7 +504,7 @@ a {
 .mobile-menu__footer-label {
   display: block;
   font-family: var(--font-secondary);
-  font-size: 0.75rem;
+  font-size: var(--text-md);
   opacity: 0.5;
   margin-bottom: 0.75rem;
 }
@@ -463,7 +519,7 @@ a {
   color: var(--color-text-primary);
   text-decoration: none;
   font-family: var(--font-main);
-  font-size: 0.85rem;
+  font-size: var(--text-lg);
   font-weight: 500;
   letter-spacing: 0.02em;
   transition: color 0.3s ease;
@@ -478,6 +534,7 @@ a {
    RESPONSIVE — MOBILE (≤768px)
    ============================================================ */
 @media (max-width: 768px) {
+
   .nav-links,
   .cta-button {
     display: none;
@@ -492,7 +549,7 @@ a {
   }
 
   .hero-title {
-    font-size: 7vw;
+    font-size: var(--text-vw-lg);
     max-width: 90%;
   }
 
@@ -508,7 +565,7 @@ a {
   }
 
   .who-am-i__heading {
-    font-size: 3rem;
+    font-size: var(--text-8xl);
   }
 
   .who-am-i__stats {
@@ -516,7 +573,7 @@ a {
   }
 
   .who-am-i__stat-number {
-    font-size: 2.5rem;
+    font-size: var(--text-7xl);
   }
 
   /* What I Offer — stack vertically, no pin */
@@ -562,7 +619,7 @@ a {
 .who-am-i__label {
   display: block;
   font-family: var(--font-secondary);
-  font-size: 0.7rem;
+  font-size: var(--text-sm);
   font-weight: 500;
   letter-spacing: 0.15em;
   color: var(--color-primary);
@@ -572,7 +629,7 @@ a {
 
 .who-am-i__heading {
   font-family: var(--font-main);
-  font-size: 5rem;
+  font-size: var(--text-10xl);
   font-weight: 600;
   line-height: 0.95;
   letter-spacing: -0.03em;
@@ -595,7 +652,7 @@ a {
 
 .who-am-i__text {
   font-family: var(--font-secondary);
-  font-size: 1rem;
+  font-size: var(--text-xl);
   line-height: 1.8;
   color: var(--color-text-primary);
   margin-bottom: 1.5rem;
@@ -619,7 +676,7 @@ a {
 
 .who-am-i__stat-number {
   font-family: var(--font-main);
-  font-size: 3.5rem;
+  font-size: var(--text-9xl);
   font-weight: 700;
   line-height: 1;
   color: var(--color-primary);
@@ -628,7 +685,7 @@ a {
 
 .who-am-i__stat-label {
   font-family: var(--font-secondary);
-  font-size: 0.8rem;
+  font-size: var(--text-base);
   font-weight: 400;
   line-height: 1.4;
   color: var(--color-text-secondary);
@@ -658,7 +715,7 @@ a {
 .offer-label {
   display: block;
   font-family: var(--font-secondary);
-  font-size: 0.7rem;
+  font-size: var(--text-sm);
   font-weight: 500;
   letter-spacing: 0.15em;
   color: var(--color-text-secondary);
@@ -668,7 +725,7 @@ a {
 
 .offer-heading {
   font-family: var(--font-main);
-  font-size: 2.5rem;
+  font-size: var(--text-7xl);
   font-weight: 600;
   color: var(--color-text-primary);
   letter-spacing: -0.02em;
@@ -677,7 +734,8 @@ a {
 .offer-track {
   display: flex;
   gap: 1.5rem;
-  padding-left: 25%; /* 25% whitespace at start */
+  padding-left: 25%;
+  /* 25% whitespace at start */
   will-change: transform;
 }
 
@@ -726,14 +784,14 @@ a {
 
 .offer-card__number {
   font-family: var(--font-secondary);
-  font-size: 0.85rem;
+  font-size: var(--text-lg);
   font-weight: 500;
   color: var(--color-text-secondary);
 }
 
 .offer-card__title {
   font-family: var(--font-main);
-  font-size: 1.5rem;
+  font-size: var(--text-5xl);
   font-weight: 600;
   color: var(--color-text-primary);
   line-height: 1.2;
@@ -749,7 +807,7 @@ a {
 
 .offer-card__desc {
   font-family: var(--font-secondary);
-  font-size: 0.85rem;
+  font-size: var(--text-lg);
   line-height: 1.7;
   color: var(--color-text-secondary);
 }

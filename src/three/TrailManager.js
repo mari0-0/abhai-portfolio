@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { TRAIL_LENGTH } from "../shaders/FluidReveal.js";
+import { TRAIL_LENGTH } from "./shaders/FluidReveal.js";
 
 export class TrailManager {
   constructor(camera, globalParams) {
@@ -14,13 +14,17 @@ export class TrailManager {
     this.planes = [];
     this.trackables = [];
 
-    window.addEventListener("mousemove", this.onMouseMove.bind(this));
-    window.addEventListener("resize", this.onWindowResize.bind(this));
+    this._onMouseMove = this.onMouseMove.bind(this);
+    this._onResize = this.onWindowResize.bind(this);
+    window.addEventListener("mousemove", this._onMouseMove);
+    window.addEventListener("resize", this._onResize);
   }
 
   onMouseMove(event) {
-    this.mouseP.targetX = (event.clientX - this.windowHalf.x) / this.windowHalf.x;
-    this.mouseP.targetY = (event.clientY - this.windowHalf.y) / this.windowHalf.y;
+    this.mouseP.targetX =
+      (event.clientX - this.windowHalf.x) / this.windowHalf.x;
+    this.mouseP.targetY =
+      (event.clientY - this.windowHalf.y) / this.windowHalf.y;
 
     this.mouse2D.x = (event.clientX / window.innerWidth) * 2 - 1;
     this.mouse2D.y = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -38,8 +42,12 @@ export class TrailManager {
   }
 
   update(delta) {
-    this.mouseP.currentX += (this.mouseP.targetX - this.mouseP.currentX) * this.globalParams.parallaxEase;
-    this.mouseP.currentY += (this.mouseP.targetY - this.mouseP.currentY) * this.globalParams.parallaxEase;
+    this.mouseP.currentX +=
+      (this.mouseP.targetX - this.mouseP.currentX) *
+      this.globalParams.parallaxEase;
+    this.mouseP.currentY +=
+      (this.mouseP.targetY - this.mouseP.currentY) *
+      this.globalParams.parallaxEase;
 
     this.raycaster.setFromCamera(this.mouse2D, this.camera);
 
@@ -49,8 +57,13 @@ export class TrailManager {
       this.raycaster.ray.intersectPlane(p.plane, hitPoints[p.id]);
     }
 
-    const meshesToIntersect = this.trackables.map(t => t.mesh).filter(Boolean);
-    const intersects = this.raycaster.intersectObjects(meshesToIntersect, true);
+    const meshesToIntersect = this.trackables
+      .map((t) => t.mesh)
+      .filter(Boolean);
+    const intersects = this.raycaster.intersectObjects(
+      meshesToIntersect,
+      true
+    );
 
     const actualHits = {};
     if (intersects.length > 0) {
@@ -68,8 +81,11 @@ export class TrailManager {
         const headPosition = t.fluidUniforms.uTrailPositions.value[0];
         if (headPosition.distanceTo(hitPoint) > 0.05) {
           for (let i = TRAIL_LENGTH - 1; i > 0; i--) {
-            t.fluidUniforms.uTrailPositions.value[i].copy(t.fluidUniforms.uTrailPositions.value[i - 1]);
-            t.fluidUniforms.uTrailIntensities.value[i] = t.fluidUniforms.uTrailIntensities.value[i - 1];
+            t.fluidUniforms.uTrailPositions.value[i].copy(
+              t.fluidUniforms.uTrailPositions.value[i - 1]
+            );
+            t.fluidUniforms.uTrailIntensities.value[i] =
+              t.fluidUniforms.uTrailIntensities.value[i - 1];
           }
         }
         t.fluidUniforms.uTrailPositions.value[0].copy(hitPoint);
@@ -84,5 +100,10 @@ export class TrailManager {
         }
       }
     }
+  }
+
+  dispose() {
+    window.removeEventListener("mousemove", this._onMouseMove);
+    window.removeEventListener("resize", this._onResize);
   }
 }

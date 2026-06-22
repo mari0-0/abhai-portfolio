@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { applyFluidReveal } from "../shaders/FluidReveal.js";
+import { applyFluidReveal } from "./shaders/FluidReveal.js";
 
 const loader = new GLTFLoader();
 const dracoLoader = new DRACOLoader();
@@ -30,16 +30,16 @@ export function loadRevealingModel(path, scene, options = {}) {
   return new Promise((resolve, reject) => {
     loader.load(
       path,
-      gltf => {
+      (gltf) => {
         const solidGroup = new THREE.Group();
         const wireframeGroup = new THREE.Group();
 
         const meshes = [];
-        gltf.scene.traverse(child => {
+        gltf.scene.traverse((child) => {
           if (child.isMesh) meshes.push(child);
         });
 
-        meshes.forEach(mesh => {
+        meshes.forEach((mesh) => {
           // --- Solid Mesh ---
           let solidMesh = mesh.clone();
 
@@ -92,10 +92,10 @@ export function loadRevealingModel(path, scene, options = {}) {
         resolve({ solidGroup, wireframeGroup });
       },
       undefined,
-      err => {
+      (err) => {
         console.error("Error loading model:", err);
         reject(err);
-      },
+      }
     );
   });
 }

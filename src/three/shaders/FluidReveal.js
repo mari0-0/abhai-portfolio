@@ -13,7 +13,7 @@ export function createFluidUniforms(paramsConfig) {
 }
 
 export function applyFluidReveal(material, fluidUniforms) {
-  material.onBeforeCompile = shader => {
+  material.onBeforeCompile = (shader) => {
     shader.uniforms.uTime = fluidUniforms.uTime;
     shader.uniforms.uTrailPositions = fluidUniforms.uTrailPositions;
     shader.uniforms.uTrailIntensities = fluidUniforms.uTrailIntensities;
@@ -25,7 +25,7 @@ export function applyFluidReveal(material, fluidUniforms) {
     `.replace(
       `#include <worldpos_vertex>`,
       `#include <worldpos_vertex>
-       vFluidWorldPos = (modelMatrix * vec4(transformed, 1.0)).xyz;`,
+       vFluidWorldPos = (modelMatrix * vec4(transformed, 1.0)).xyz;`
     );
 
     shader.fragmentShader = `
@@ -51,7 +51,7 @@ export function applyFluidReveal(material, fluidUniforms) {
        }
        
        if (mask < 0.01) discard;
-       gl_FragColor.a *= mask;`,
+       gl_FragColor.a *= mask;`
     );
   };
 }
