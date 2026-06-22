@@ -93,6 +93,14 @@ export default function ProjectDetail({ project }) {
     nextXTo.current = gsap.quickTo(nextCursorRef.current, "x", { duration: 0.15, ease: "power3.out" });
     nextYTo.current = gsap.quickTo(nextCursorRef.current, "y", { duration: 0.15, ease: "power3.out" });
 
+    const handleMouseMove = (e) => {
+      if (heroXTo.current) heroXTo.current(e.clientX);
+      if (heroYTo.current) heroYTo.current(e.clientY);
+      if (nextXTo.current) nextXTo.current(e.clientX);
+      if (nextYTo.current) nextYTo.current(e.clientY);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+
     const ctx = gsap.context(() => {
       const CUSTOM_EASE = "expo.out";
 
@@ -238,6 +246,7 @@ export default function ProjectDetail({ project }) {
 
     return () => {
       if (gsapCtxRef.current) gsapCtxRef.current.revert();
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [project.slug, nextProject.slug, router]);
 
@@ -260,10 +269,6 @@ export default function ProjectDetail({ project }) {
       <section ref={heroRef} className="project-hero">
         <div
           className="project-hero__image-wrapper"
-          onMouseMove={(e) => {
-            if (heroXTo.current) heroXTo.current(e.clientX);
-            if (heroYTo.current) heroYTo.current(e.clientY);
-          }}
           onMouseEnter={() => setIsHoveringHero(true)}
           onMouseLeave={() => setIsHoveringHero(false)}
           onClick={() => {
@@ -392,10 +397,6 @@ export default function ProjectDetail({ project }) {
         <section
           ref={nextProjectRef}
           className="project-next"
-          onMouseMove={(e) => {
-            if (nextXTo.current) nextXTo.current(e.clientX);
-            if (nextYTo.current) nextYTo.current(e.clientY);
-          }}
           onMouseEnter={() => setIsHoveringNext(true)}
           onMouseLeave={() => setIsHoveringNext(false)}
           onClick={async () => {
