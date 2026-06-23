@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import CatSprite from "./CatSprite";
 import "./WhoAmISection.css";
 
 export default function WhoAmISection() {
@@ -10,8 +11,30 @@ export default function WhoAmISection() {
   const labelRef = useRef(null);
   const wordsRef = useRef([]);
 
-  const text = "I am Abhai a frontend, full stack developer and a fresh grad with deep experience in practical knowledge.";
-  const words = text.split(" ");
+  const wordsData = [
+    { text: "I", highlight: false },
+    { text: "am", highlight: false },
+    { text: "Abhai,", highlight: true },
+    { text: "a", highlight: false },
+    { text: "full-stack", highlight: true },
+    { text: "developer", highlight: true },
+    { text: "and", highlight: false },
+    { text: "recent", highlight: false },
+    { text: "graduate.", highlight: false },
+    { text: "I", highlight: false },
+    { text: "specialize", highlight: false },
+    { text: "in", highlight: false },
+    { text: "crafting", highlight: false },
+    { text: "modern,", highlight: true },
+    { text: "interactive", highlight: true },
+    { text: "web", highlight: false },
+    { text: "experiences", highlight: false },
+    { text: "driven", highlight: false },
+    { text: "by", highlight: false },
+    { text: "deep", highlight: false },
+    { text: "practical", highlight: true },
+    { text: "knowledge.", highlight: true },
+  ];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -25,19 +48,22 @@ export default function WhoAmISection() {
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: "top 35%",
         }
       });
 
-      // Words stagger animation
+      // Words blur reveal on scroll
       gsap.to(wordsRef.current, {
-        y: "0%",
-        duration: 1.2,
-        stagger: 0.04,
-        ease: "power4.out",
+        y: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        stagger: 0.1,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 65%",
+          start: "top 35%",
+          end: "center center",
+          scrub: true,
         }
       });
     }, sectionRef);
@@ -47,13 +73,19 @@ export default function WhoAmISection() {
 
   return (
     <section className="who-am-i-section" ref={sectionRef}>
-      <div className="who-am-i-label" ref={labelRef}>( Who Am I )</div>
+      <div className="who-am-i-header">
+        <div className="who-am-i-label" ref={labelRef}>( Who Am I )</div>
+        <CatSprite />
+      </div>
       <div className="who-am-i-container">
         <h2 className="who-am-i-text">
-          {words.map((word, i) => (
+          {wordsData.map((w, i) => (
             <span key={i} className="word-wrap">
-              <span className="word" ref={el => wordsRef.current[i] = el}>
-                {word}
+              <span
+                className={`word ${w.highlight ? 'highlight' : ''}`}
+                ref={el => wordsRef.current[i] = el}
+              >
+                {w.text}
               </span>
             </span>
           ))}

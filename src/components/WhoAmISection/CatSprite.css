@@ -1,0 +1,32 @@
+.cat-sprite-container {
+  width: 120px; /* Scale pixel art up */
+  height: 120px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.cat-sprite-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* CRITICAL: Scale pixel images cleanly without blur */
+  image-rendering: pixelated; 
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+@media (max-width: 768px) {
+  .cat-sprite-container {
+    width: 80px;
+    height: 80px;
+    left: auto;
+    right: 2rem;
+    transform: translateY(-50%);
+  }
+}

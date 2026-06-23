@@ -19,6 +19,13 @@
   margin-top: 2rem;
 }
 
+.who-am-i-header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .who-am-i-label {
   font-family: var(--font-secondary);
   font-size: var(--text-sm);
@@ -42,17 +49,22 @@
   row-gap: 0.1em;
 }
 
+.who-am-i-text .highlight {
+  color: var(--color-primary);
+}
+
 .word-wrap {
-  overflow: hidden;
   display: inline-flex;
-  padding-bottom: 0.1em; /* Give descenders like 'p' or 'g' some room before clipping */
-  margin-bottom: -0.1em; /* Offset the padding to keep line-height accurate */
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
 }
 
 .word {
-  transform: translateY(115%);
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(30px);
   display: inline-block;
-  will-change: transform;
+  will-change: transform, opacity, filter;
 }
 
 @media (max-width: 768px) {
