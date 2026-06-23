@@ -7,6 +7,19 @@
   position: relative;
 }
 
+.projects-slider__label {
+  position: absolute;
+  top: 6rem;
+  left: 4rem;
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  z-index: 100;
+}
+
 /* Base text column layout */
 .projects-slider__content {
   position: absolute;
@@ -14,7 +27,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 120px 80px 80px 80px;
+  padding: 12rem 4rem 80px 4rem;
   display: flex;
   pointer-events: none;
 }
@@ -152,8 +165,8 @@
 .projects-slider__footer {
   position: absolute;
   bottom: 40px;
-  left: 80px;
-  right: 80px;
+  left: 4rem;
+  right: 4rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -283,6 +296,10 @@
     display: none !important;
   }
 
+  .projects-slider__label {
+    left: 4rem;
+  }
+
   .projects-slider__title {
     font-size: 4rem;
     margin-bottom: 2rem;
@@ -332,15 +349,15 @@
 
   /* Left Column: Text Data */
   .projects-slider__content {
-    padding: 100px 40px 40px 40px;
+    padding: 12rem 4rem 40px 4rem;
   }
 
   .projects-slider__text-column {
     width: 45%;
     position: absolute;
-    top: 160px;
+    top: 14rem;
     /* Align slightly below counter */
-    left: 40px;
+    left: 4rem;
     bottom: 40px;
   }
 
@@ -371,10 +388,10 @@
 
   /* Footer (Counter top left) */
   .projects-slider__footer {
-    top: 100px;
-    left: 40px;
+    top: 8rem;
+    left: 4rem;
     bottom: 40px;
-    height: calc(100% - 140px);
+    height: calc(100% - 10rem);
     flex-direction: column-reverse;
     justify-content: space-between;
     align-items: flex-start;
@@ -389,8 +406,13 @@
     overflow-x: hidden;
   }
 
+  .projects-slider__label {
+    top: 8rem;
+    left: 2rem;
+  }
+
   .projects-slider__content {
-    padding: 160px 20px 60px 20px;
+    padding: 12rem 2rem 60px 2rem;
     /* Push Title down to make room for absolute header */
     height: auto;
     position: relative;
@@ -409,9 +431,9 @@
   /* 1. Header Row (Counter Left, Buttons Right) */
   .projects-slider__mobile-nav {
     position: absolute;
-    top: 180px;
+    top: 12rem;
     /* Align with counter, just above title */
-    right: 20px;
+    right: 2rem;
     left: auto;
     pointer-events: auto;
     /* Fix unclickable buttons */
@@ -419,9 +441,9 @@
 
   .projects-slider__footer {
     position: absolute;
-    top: 180px;
+    top: 12rem;
     /* Exact same top value as nav buttons */
-    left: 20px;
+    left: 2rem;
     right: auto;
     bottom: auto;
     height: auto;
@@ -446,10 +468,10 @@
   /* 3. Image Full Width 16:9 */
   .projects-slider__images {
     position: absolute;
-    top: calc(160px + 3rem + 20px);
+    top: calc(12rem + 3rem + 20px);
     /* Content padding + Title height + margin */
-    left: 20px;
-    width: calc(100% - 40px);
+    left: 2rem;
+    width: calc(100% - 4rem);
     height: auto;
     pointer-events: none;
   }

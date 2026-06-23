@@ -13,12 +13,15 @@ import {
   createScanMaterial,
 } from "@/three/shaders/Materials";
 
-import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
+
 import Navbar from "@/components/Navbar/Navbar";
 import HeroSection from "@/components/HeroSection/HeroSection";
+import HeroDissolve from "@/components/HeroDissolve/HeroDissolve";
 import MobileMenuOverlay from "@/components/MobileMenuOverlay/MobileMenuOverlay";
 import ProjectsSlider from "@/components/ProjectsSlider/ProjectsSlider";
 import WhatIShipSection from "@/components/WhatIShipSection/WhatIShipSection";
+import WhoAmISection from "@/components/WhoAmISection/WhoAmISection";
+import Footer from "@/components/Footer/Footer";
 
 export default function PortfolioPage() {
   const canvasContainerRef = useRef(null);
@@ -192,6 +195,8 @@ export default function PortfolioPage() {
 
       // Fallback trigger
       setLoadingProgress(1);
+      window.portfolio3DLoaded = true;
+      window.dispatchEvent(new Event("portfolio-3d-loaded"));
     });
 
     /* ---------------- ANIMATION STATE ---------------- */
@@ -284,6 +289,7 @@ export default function PortfolioPage() {
       window.removeEventListener("resize", onBgResize);
       trailManager.dispose();
       sceneManager.dispose();
+      window.portfolio3DLoaded = false;
     };
   }, []);
 
@@ -292,11 +298,15 @@ export default function PortfolioPage() {
 
   return (
     <>
-      {/* Loading Screen */}
-      <LoadingScreen progress={loadingProgress} />
+
 
       {/* Canvas Container — both WebGL renderers mount here */}
       <div ref={canvasContainerRef} />
+
+      {/* Hero Dissolve Effect Overlay */}
+      <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100vh", zIndex: 3, pointerEvents: "none" }}>
+        <HeroDissolve />
+      </div>
 
       {/* Navbar moved outside of ui-layer to sit on top of 3d models */}
       <Navbar onMenuToggle={toggleMenu} menuOpen={menuOpen} />
@@ -311,17 +321,17 @@ export default function PortfolioPage() {
       {/* Mobile Menu Overlay */}
       <MobileMenuOverlay isOpen={menuOpen} onClose={closeMenu} />
 
-
-      {/* What I Ship Section */}
-      <WhatIShipSection />
+      {/* Who Am I Section */}
+      <WhoAmISection />
 
       {/* Projects */}
       <ProjectsSlider />
 
-      {/* Dummy Next Section to allow scrolling past Projects */}
-      <section style={{ height: "100vh", backgroundColor: "#010101", display: "flex", alignItems: "center", justifyContent: "center", color: "white" }}>
-        <h2>Next Section (Coming Soon)</h2>
-      </section>
+      {/* What I Ship Section */}
+      <WhatIShipSection />
+
+      {/* Footer */}
+      <Footer />
     </>
   );
 }

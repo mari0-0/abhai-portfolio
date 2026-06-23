@@ -192,6 +192,8 @@ export default function ProjectsSlider() {
     <div ref={containerRef} style={{ height: `${projects.length * 100}vh`, position: "relative" }}>
       <div className="projects-slider" style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden" }}>
 
+        <div className="projects-slider__label">( Projects )</div>
+
         {/* MOBILE NAV ARROWS (Tablet/Mobile Only) */}
         <div className="projects-slider__mobile-nav">
           <button className="nav-arrow" onClick={() => scrollToProject((activeIdx - 1 + projects.length) % projects.length)}>

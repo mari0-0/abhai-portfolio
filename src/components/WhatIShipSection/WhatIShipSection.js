@@ -103,10 +103,7 @@ export default function WhatIShipSection() {
       <div className="what-i-ship-pinned" ref={containerRef}>
 
         <div className="what-i-ship-header">
-          <h2>
-            <span>What I ship.</span>
-            My ways to move fast
-          </h2>
+          <div className="what-i-ship-label">( What I Ship )</div>
         </div>
 
         <div className="what-i-ship-cards-container">

@@ -182,8 +182,6 @@ a {
 
 .logo img {
   width: 4rem;
-  -webkit-filter: drop-shadow(1px 1px 0 white) drop-shadow(-1px -1px 0 white);
-  filter: drop-shadow(1px 1px 0 white) drop-shadow(-1px -1px 0 white);
 }
 
 .nav-links {
@@ -555,24 +553,7 @@ a {
     padding: 0 2rem;
   }
 
-  /* Who Am I — stack vertically */
-  .who-am-i__inner {
-    flex-direction: column;
-    gap: 3rem;
-    padding: 4rem 2rem;
-  }
 
-  .who-am-i__heading {
-    font-size: var(--text-8xl);
-  }
-
-  .who-am-i__stats {
-    gap: 2rem;
-  }
-
-  .who-am-i__stat-number {
-    font-size: var(--text-7xl);
-  }
 
   /* What I Offer — stack vertically, no pin */
   .what-i-offer {
@@ -591,105 +572,7 @@ a {
   }
 }
 
-/* ============================================================
-   WHO AM I SECTION
-   ============================================================ */
-.who-am-i {
-  position: relative;
-  background-color: var(--color-background);
-  overflow: hidden;
-}
 
-.who-am-i__inner {
-  display: flex;
-  gap: 6rem;
-  padding: 8rem 4rem;
-  max-width: 1400px;
-  margin: 0 auto;
-  align-items: flex-start;
-}
-
-.who-am-i__left {
-  flex: 0 0 auto;
-  position: relative;
-}
-
-.who-am-i__label {
-  display: block;
-  font-family: var(--font-secondary);
-  font-size: var(--text-sm);
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  color: var(--color-primary);
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-}
-
-.who-am-i__heading {
-  font-family: var(--font-main);
-  font-size: var(--text-10xl);
-  font-weight: 600;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  color: var(--color-text-primary);
-  text-transform: uppercase;
-}
-
-.who-am-i__right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-  padding-top: 0.5rem;
-}
-
-.who-am-i__bio {
-  border-left: 2px solid var(--color-primary);
-  padding-left: 2rem;
-}
-
-.who-am-i__text {
-  font-family: var(--font-secondary);
-  font-size: var(--text-xl);
-  line-height: 1.8;
-  color: var(--color-text-primary);
-  margin-bottom: 1.5rem;
-}
-
-.who-am-i__text--muted {
-  color: var(--color-text-secondary);
-  margin-bottom: 0;
-}
-
-.who-am-i__stats {
-  display: flex;
-  gap: 4rem;
-}
-
-.who-am-i__stat {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.who-am-i__stat-number {
-  font-family: var(--font-main);
-  font-size: var(--text-9xl);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--color-primary);
-  letter-spacing: -0.02em;
-}
-
-.who-am-i__stat-label {
-  font-family: var(--font-secondary);
-  font-size: var(--text-base);
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
 
 /* ============================================================
    WHAT I OFFER SECTION (Horizontal Scroll)
