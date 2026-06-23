@@ -25,13 +25,18 @@ export const metadata = {
 };
 
 import LenisProvider from "@/components/LenisProvider";
+import TransitionProvider from "@/providers/TransitionProvider";
+import CustomScrollbar from "@/components/CustomScrollbar/CustomScrollbar";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <body>
         <LenisProvider>
-          <main>{children}</main>
+          <TransitionProvider>
+            <main>{children}</main>
+          </TransitionProvider>
+          <CustomScrollbar />
         </LenisProvider>
       </body>
     </html>

@@ -58,12 +58,10 @@
 .project-hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.1) 40%,
-    rgba(0, 0, 0, 0.05) 100%
-  );
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.1) 40%,
+      rgba(0, 0, 0, 0.05) 100%);
   z-index: 1;
 }
 
@@ -509,6 +507,12 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
+  transform: scale(1);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.project-next:hover .project-next__image-wrapper {
+  transform: scale(1.03);
 }
 
 .project-next__image {
@@ -522,12 +526,10 @@
 .project-next__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.7) 0%,
-    rgba(0, 0, 0, 0.2) 40%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.2) 40%,
+      rgba(0, 0, 0, 0.1) 100%);
   z-index: 1;
 }
 
@@ -581,6 +583,7 @@
 
   .project-intro {
     padding: 6rem 2rem 4rem;
+    min-height: auto;
   }
 
   .project-intro__text {
@@ -630,6 +633,7 @@
 }
 
 @media (max-width: 640px) {
+
   .project-hero__nav-center,
   .project-hero__nav-links,
   .project-hero__read-badge {
@@ -654,6 +658,7 @@
 
   .project-intro {
     padding: 4rem 1.5rem 3rem;
+    min-height: auto;
   }
 
   .project-intro__text {

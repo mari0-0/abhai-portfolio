@@ -270,10 +270,15 @@ export default function ProjectDetail({ project }) {
         <div
           className="project-hero__image-wrapper"
           onMouseEnter={() => setIsHoveringHero(true)}
+          onMouseMove={() => !isHoveringHero && setIsHoveringHero(true)}
           onMouseLeave={() => setIsHoveringHero(false)}
           onClick={() => {
             if (introRef.current) {
-              introRef.current.scrollIntoView({ behavior: "smooth" });
+              if (window.lenis) {
+                window.lenis.scrollTo(introRef.current, { offset: 0 });
+              } else {
+                introRef.current.scrollIntoView({ behavior: "smooth" });
+              }
             }
           }}
         >
@@ -398,6 +403,7 @@ export default function ProjectDetail({ project }) {
           ref={nextProjectRef}
           className="project-next"
           onMouseEnter={() => setIsHoveringNext(true)}
+          onMouseMove={() => !isHoveringNext && setIsHoveringNext(true)}
           onMouseLeave={() => setIsHoveringNext(false)}
           onClick={async () => {
             if (isTransitioningRef.current) return;

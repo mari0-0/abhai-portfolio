@@ -17,9 +17,8 @@ import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 import Navbar from "@/components/Navbar/Navbar";
 import HeroSection from "@/components/HeroSection/HeroSection";
 import MobileMenuOverlay from "@/components/MobileMenuOverlay/MobileMenuOverlay";
-import WhoAmI from "@/components/WhoAmI/WhoAmI";
-import WhatIOffer from "@/components/WhatIOffer/WhatIOffer";
 import ProjectsSlider from "@/components/ProjectsSlider/ProjectsSlider";
+import WhatIShipSection from "@/components/WhatIShipSection/WhatIShipSection";
 
 export default function PortfolioPage() {
   const canvasContainerRef = useRef(null);
@@ -299,10 +298,12 @@ export default function PortfolioPage() {
       {/* Canvas Container — both WebGL renderers mount here */}
       <div ref={canvasContainerRef} />
 
+      {/* Navbar moved outside of ui-layer to sit on top of 3d models */}
+      <Navbar onMenuToggle={toggleMenu} menuOpen={menuOpen} />
+
       {/* UI Overlay Layer */}
       <section style={{ position: "relative", width: "100%", height: "100vh" }}>
         <div id="ui-layer">
-          <Navbar onMenuToggle={toggleMenu} menuOpen={menuOpen} />
           <HeroSection />
         </div>
       </section>
@@ -310,11 +311,9 @@ export default function PortfolioPage() {
       {/* Mobile Menu Overlay */}
       <MobileMenuOverlay isOpen={menuOpen} onClose={closeMenu} />
 
-      {/* Who Am I */}
-      <WhoAmI />
 
-      {/* What I Offer */}
-      <WhatIOffer />
+      {/* What I Ship Section */}
+      <WhatIShipSection />
 
       {/* Projects */}
       <ProjectsSlider />

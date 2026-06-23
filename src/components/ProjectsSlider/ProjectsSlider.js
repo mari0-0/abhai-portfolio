@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { useRouter } from "next/navigation";
 import { projects } from "@/data/projectsData";
 import "./ProjectsSlider.css";
+import { useTransitionRouter, Link } from "next-transition-router";
 
 export default function ProjectsSlider() {
-  const router = useRouter();
+  const router = useTransitionRouter();
   const [activeIdx, setActiveIdx] = useState(0);
   const activeIdxRef = useRef(0);
   const targetIdxRef = useRef(0);
@@ -319,7 +319,7 @@ export default function ProjectsSlider() {
               <div className="projects-slider__meta-block projects-slider__explore-mobile">
                 <div className="slot-container" style={{ display: 'grid', overflow: 'hidden' }}>
                   {projects.map((proj, i) => (
-                    <a
+                    <Link
                       key={`explore-${proj.slug}`}
                       href={`/projects/${proj.slug}`}
                       className="projects-slider__explore-link"
@@ -333,7 +333,7 @@ export default function ProjectsSlider() {
                       }}
                     >
                       Explore Project ↗
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -357,6 +357,7 @@ export default function ProjectsSlider() {
                 style={{ cursor: 'none', pointerEvents: i === activeIdx ? 'auto' : 'none' }}
                 onClick={navigateToProject}
                 onMouseEnter={() => setIsHoveringImage(true)}
+                onMouseMove={() => !isHoveringImage && setIsHoveringImage(true)}
                 onMouseLeave={() => setIsHoveringImage(false)}
               >
                 <img src={proj.heroImage} alt={proj.title} />

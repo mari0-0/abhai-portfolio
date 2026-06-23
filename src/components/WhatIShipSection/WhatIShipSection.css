@@ -1,0 +1,202 @@
+.what-i-ship-section {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  margin-top: 30vh;
+  /* Adds a clean gap after the Hero section */
+  /* The section will be pinned, its height is controlled by GSAP, but let's give it some padding */
+}
+
+.what-i-ship-pinned {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.what-i-ship-header {
+  text-align: center;
+  height: 25vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.what-i-ship-header h2 {
+  font-family: var(--font-main);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.what-i-ship-header h2 span {
+  color: var(--color-surface);
+  /* or greyed out text */
+  display: block;
+}
+
+.what-i-ship-cards-container {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  /* Fits remaining viewport */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1500px;
+  z-index: 10;
+  /* Stack above header */
+}
+
+.what-i-ship-cards-wrapper {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  height: 65vh;
+  /* Fit within the 75vh container */
+  transform-style: preserve-3d;
+}
+
+.ship-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform-origin: top center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+.ship-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+.ship-card__content {
+  max-width: 600px;
+}
+
+.ship-card__title {
+  font-family: var(--font-main);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.ship-card__desc {
+  font-family: var(--font-secondary);
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.ship-card__number {
+  font-family: var(--font-main);
+  font-size: 1.5rem;
+  opacity: 0.6;
+}
+
+.ship-card__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.ship-card__testimonial {
+  max-width: 300px;
+  font-family: var(--font-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+.ship-card__author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.ship-card__author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ship-card__author-info h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.ship-card__author-info p {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.ship-card__images {
+  display: flex;
+  gap: 1rem;
+}
+
+.ship-card__image-box {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .ship-card {
+    padding: 2rem;
+  }
+
+  .ship-card__top {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .ship-card__number {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  .ship-card__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .ship-card__images {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+  }
+
+  .ship-card__image-box {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+  }
+}

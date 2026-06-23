@@ -1,5 +1,7 @@
 "use client";
 
+import { Link } from "next-transition-router";
+
 export default function MobileMenuOverlay({ isOpen, onClose }) {
   return (
     <div id="mobile-menu" className={`mobile-menu${isOpen ? " is-open" : ""}`}>
@@ -29,30 +31,30 @@ export default function MobileMenuOverlay({ isOpen, onClose }) {
       </div>
 
       <div className="mobile-menu__links">
-        <a href="#" className="mobile-menu__item" onClick={onClose}>
+        <Link href="#" className="mobile-menu__item" onClick={onClose}>
           <span className="mobile-menu__label">Our Story</span>
           <span className="mobile-menu__title">Home</span>
-        </a>
-        <a href="#" className="mobile-menu__item" onClick={onClose}>
+        </Link>
+        <Link href="#" className="mobile-menu__item" onClick={onClose}>
           <span className="mobile-menu__label">Case Studies</span>
           <span className="mobile-menu__title">Work</span>
-        </a>
-        <a href="#" className="mobile-menu__item" onClick={onClose}>
+        </Link>
+        <Link href="#" className="mobile-menu__item" onClick={onClose}>
           <span className="mobile-menu__label">What We Do</span>
           <span className="mobile-menu__title">Services</span>
-        </a>
-        <a href="#" className="mobile-menu__item" onClick={onClose}>
+        </Link>
+        <Link href="#" className="mobile-menu__item" onClick={onClose}>
           <span className="mobile-menu__label">Thought Leadership</span>
           <span className="mobile-menu__title">Insights</span>
-        </a>
-        <a href="#" className="mobile-menu__item" onClick={onClose}>
+        </Link>
+        <Link href="#" className="mobile-menu__item" onClick={onClose}>
           <span className="mobile-menu__label">Who We Are</span>
           <span className="mobile-menu__title">About</span>
-        </a>
-        <a href="#" className="mobile-menu__item" onClick={onClose}>
+        </Link>
+        <Link href="#" className="mobile-menu__item" onClick={onClose}>
           <span className="mobile-menu__label">Get in Touch</span>
           <span className="mobile-menu__title">Contact</span>
-        </a>
+        </Link>
       </div>
 
       <div className="mobile-menu__footer">
