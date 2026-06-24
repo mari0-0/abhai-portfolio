@@ -159,11 +159,11 @@ export default function Footer() {
 
     // Title parallax scrub per letter
     const letters = gsap.utils.toArray(titleRef.current.querySelectorAll("span"));
-    const distances = [350, -250, 400, -300, 200, 0, -400, 250, -150, 300, -200];
-    
-    gsap.fromTo(letters, 
-      { 
-        y: (i) => distances[i % distances.length], 
+    const distances = [1050, -250, 500, -500, 850, 0, -300, 1550, -450, 900, -100];
+
+    gsap.fromTo(letters,
+      {
+        y: (i) => distances[i % distances.length],
       },
       {
         y: 0,
@@ -210,12 +210,10 @@ export default function Footer() {
 
       <div className="footer-content">
         <div className="footer-top">
-          {/* Empty div for layout balance if needed */}
-          <div></div>
-
-          <div className="footer-links">
+          <div className="footer-links left-links">
+            <h3 className="footer-subtitle">Let's work together</h3>
             {[
-              { label: "Email", href: "mailto:abhaimatta@gmail.com" },
+              { label: "abhaimatta@gmail.com", href: "mailto:abhaimatta@gmail.com" },
               { label: "LinkedIn", href: "https://www.linkedin.com/in/abhaimatta" },
               { label: "GitHub", href: "https://github.com/mari0-0" },
             ].map((link, index) => (
@@ -227,6 +225,25 @@ export default function Footer() {
                 className="footer-link-item"
                 data-text={link.label}
                 ref={el => linksRef.current[index] = el}
+              >
+                <span>{link.label}</span>
+              </a>
+            ))}
+          </div>
+
+          <div className="footer-links right-links">
+            {[
+              { label: "WHOAMI", href: "#whoami" },
+              { label: "WHAT I SHIP", href: "#whatiship" },
+              { label: "PROJECTS", href: "/projects" },
+              { label: "WHY CHOOSE ME", href: "#whychooseme" },
+            ].map((link, index) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="footer-link-item"
+                data-text={link.label}
+                ref={el => linksRef.current[3 + index] = el}
               >
                 <span>{link.label}</span>
               </a>

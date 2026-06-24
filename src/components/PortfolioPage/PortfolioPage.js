@@ -18,9 +18,10 @@ import Navbar from "@/components/Navbar/Navbar";
 import HeroSection from "@/components/HeroSection/HeroSection";
 import HeroDissolve from "@/components/HeroDissolve/HeroDissolve";
 import MobileMenuOverlay from "@/components/MobileMenuOverlay/MobileMenuOverlay";
-import ProjectsSlider from "@/components/ProjectsSlider/ProjectsSlider";
 import WhatIShipSection from "@/components/WhatIShipSection/WhatIShipSection";
 import WhoAmISection from "@/components/WhoAmISection/WhoAmISection";
+import SeeMoreWorkSection from "@/components/SeeMoreWorkSection/SeeMoreWorkSection";
+import WhyChooseMeSection from "@/components/WhyChooseMeSection/WhyChooseMeSection";
 import Footer from "@/components/Footer/Footer";
 
 export default function PortfolioPage() {
@@ -324,11 +325,14 @@ export default function PortfolioPage() {
       {/* Who Am I Section */}
       <WhoAmISection />
 
-      {/* Projects */}
-      <ProjectsSlider />
-
       {/* What I Ship Section */}
       <WhatIShipSection />
+
+      {/* See More Work Section */}
+      <SeeMoreWorkSection />
+
+      {/* Why Choose Me Section */}
+      <WhyChooseMeSection />
 
       {/* Footer */}
       <Footer />

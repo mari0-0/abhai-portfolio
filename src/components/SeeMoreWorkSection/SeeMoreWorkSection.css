@@ -1,0 +1,121 @@
+.see-more-section {
+  position: relative;
+  width: 100%;
+  height: 120vh;
+  min-height: 1000px;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.see-more-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.see-more-center-text:hover~.see-more-ring-scaler {
+  transform: scale(0.85);
+}
+
+.see-more-center-text h2 {
+  font-family: var(--font-main);
+  font-size: var(--text-fluid-4);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: #c9c7c5;
+  margin: 0;
+  transition: text-shadow 0.4s ease, color 0.4s ease;
+}
+
+.see-more-center-text:hover h2 {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(240, 98, 54, 0.2);
+}
+
+.see-more-ring-scaler {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  z-index: 1;
+  transition: transform 0.25s ease-in-out;
+}
+
+.see-more-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.see-more-card-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  margin-top: -90px;
+  margin-left: -90px;
+  /* Transform applied via inline style for responsive radius */
+}
+
+.see-more-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  background-color: #222;
+}
+
+.see-more-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .see-more-section {
+    height: 100vh;
+    min-height: 700px;
+  }
+
+  .see-more-card-wrapper {
+    width: 140px;
+    height: 140px;
+    margin-top: -70px;
+    margin-left: -70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .see-more-section {
+    height: 80vh;
+    min-height: 500px;
+  }
+
+  .see-more-center-text h2 {
+    font-size: var(--text-fluid-3);
+  }
+
+  .see-more-card-wrapper {
+    width: 120px;
+    height: 120px;
+    margin-top: -60px;
+    margin-left: -60px;
+  }
+}

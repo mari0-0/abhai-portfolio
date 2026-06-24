@@ -22,6 +22,14 @@ export default function ProjectsSlider() {
   const scrollerThumbs = useRef([]);
   const isAutoScrollingRef = useRef(false);
   const scrollTimeoutRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 1024);
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     // Initial state setup
@@ -54,6 +62,8 @@ export default function ProjectsSlider() {
 
     const handleScroll = () => {
       if (!containerRef.current) return;
+      if (window.innerWidth <= 1024) return; // Disable scroll animation on tablet/mobile
+
       const rect = containerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const maxScroll = rect.height - windowHeight;
@@ -189,8 +199,8 @@ export default function ProjectsSlider() {
   };
 
   return (
-    <div ref={containerRef} style={{ height: `${projects.length * 100}vh`, position: "relative" }}>
-      <div className="projects-slider" style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden" }}>
+    <div ref={containerRef} style={{ height: isMobile ? "auto" : `${projects.length * 100}vh`, minHeight: "100vh", position: "relative" }}>
+      <div className="projects-slider" style={{ position: isMobile ? "relative" : "sticky", top: 0, height: isMobile ? "auto" : "100vh", minHeight: "100vh", overflowY: isMobile ? "visible" : "hidden", overflowX: "hidden" }}>
 
         <div className="projects-slider__label">( Projects )</div>
 
@@ -295,7 +305,15 @@ export default function ProjectsSlider() {
 
               {/* OUTCOMES SLOT */}
               <div className="projects-slider__meta-block">
-                <span className="projects-slider__meta-label">Outcomes</span>
+                <span 
+                  className="projects-slider__meta-label"
+                  style={{
+                    opacity: projects[activeIdx].outcomesList && projects[activeIdx].outcomesList.length > 0 ? 1 : 0,
+                    transition: 'opacity 0.6s ease'
+                  }}
+                >
+                  Outcomes
+                </span>
                 <div className="slot-container" style={{ display: 'grid', overflow: 'hidden' }}>
                   {projects.map((proj, i) => (
                     <ul
@@ -391,6 +409,17 @@ export default function ProjectsSlider() {
               </div>
             ))}
           </div>
+          
+          {/* SCROLL DOWN INDICATOR */}
+          {!isMobile && activeIdx < projects.length - 1 && (
+            <div className="projects-slider__scroll-indicator">
+              <span className="scroll-text">Scroll Down</span>
+              <div className="scroll-line">
+                <div className="scroll-line-inner"></div>
+              </div>
+            </div>
+          )}
+
           <div className="projects-slider__counter">
             <div className="projects-slider__counter-current">
               {projects.map((_, i) => (

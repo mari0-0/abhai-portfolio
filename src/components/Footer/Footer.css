@@ -51,6 +51,25 @@
   gap: 1rem;
 }
 
+.left-links {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.right-links {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.footer-subtitle {
+  font-family: var(--font-main);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
 .footer-link-item {
   font-family: var(--font-secondary);
   font-size: var(--text-lg);

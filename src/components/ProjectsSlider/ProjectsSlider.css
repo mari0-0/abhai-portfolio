@@ -9,8 +9,10 @@
 
 .projects-slider__label {
   position: absolute;
-  top: 6rem;
-  left: 4rem;
+  top: 9.5rem;
+  left: calc(50% + min(65vh, 50vw - 4rem));
+  transform: translateX(-100%);
+  white-space: nowrap;
   font-family: var(--font-secondary);
   font-size: var(--text-sm);
   font-weight: 500;
@@ -140,9 +142,9 @@
 .project-image-wrapper {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 65vh;
+  top: 12rem;
+  width: min(65vh, calc(50vw - 4rem));
+  height: auto;
   aspect-ratio: 1 / 1;
   overflow: hidden;
   opacity: 0;
@@ -209,10 +211,64 @@
   color: var(--color-text-secondary);
 }
 
+/* Scroll Down Indicator */
+.projects-slider__scroll-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  pointer-events: none;
+}
+
+.projects-slider__scroll-indicator .scroll-text {
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+.projects-slider__scroll-indicator .scroll-line {
+  width: 1px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-slider__scroll-indicator .scroll-line-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+  animation: scrollLineAnim 1.8s cubic-bezier(0.19, 1, 0.22, 1) infinite;
+}
+
+@keyframes scrollLineAnim {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
 /* Mini Scroller */
 .projects-slider__mini-scroller {
   position: absolute;
-  right: 40px;
+  right: 4rem;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -236,7 +292,7 @@
   position: absolute;
   top: 0;
   width: 100%;
-  height: 2px;
+  height: 4px;
   background-color: var(--color-text-secondary);
   transition: background-color 0.3s ease;
 }
@@ -297,7 +353,9 @@
   }
 
   .projects-slider__label {
+    top: 8rem;
     left: 4rem;
+    transform: none;
   }
 
   .projects-slider__title {
@@ -309,8 +367,10 @@
     display: flex;
     gap: 15px;
     position: absolute;
-    top: 100px;
-    right: 40px;
+    top: 11rem;
+    right: 4rem;
+    height: 45px;
+    align-items: center;
     z-index: 100;
     pointer-events: auto;
     /* Fix unclickable buttons */
@@ -353,9 +413,9 @@
   }
 
   .projects-slider__text-column {
-    width: 45%;
+    width: calc(50% - 6rem);
     position: absolute;
-    top: 14rem;
+    top: 16rem;
     /* Align slightly below counter */
     left: 4rem;
     bottom: 40px;
@@ -364,7 +424,7 @@
   .projects-slider__meta-grid {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .projects-slider__meta-block {
@@ -378,8 +438,8 @@
   /* Right Column: Image */
   .project-image-wrapper {
     left: 50%;
-    top: 160px;
-    width: calc(50% - 40px);
+    top: 16rem;
+    width: calc(50% - 4rem);
     height: auto;
     aspect-ratio: 3 / 4;
     transform: none;
@@ -388,10 +448,10 @@
 
   /* Footer (Counter top left) */
   .projects-slider__footer {
-    top: 8rem;
+    top: 11rem;
     left: 4rem;
     bottom: 40px;
-    height: calc(100% - 10rem);
+    height: calc(100% - 11rem);
     flex-direction: column-reverse;
     justify-content: space-between;
     align-items: flex-start;
@@ -402,21 +462,21 @@
 /* Mobile Phones (max-width: 768px) */
 @media (max-width: 768px) {
   .projects-slider {
-    overflow-y: auto;
     overflow-x: hidden;
   }
 
   .projects-slider__label {
     top: 8rem;
     left: 2rem;
+    transform: none;
   }
 
   .projects-slider__content {
-    padding: 12rem 2rem 60px 2rem;
-    /* Push Title down to make room for absolute header */
+    padding: 16rem 2rem 60px 2rem;
     height: auto;
     position: relative;
     display: block;
+    pointer-events: auto;
   }
 
   .projects-slider__text-column {
@@ -432,23 +492,23 @@
   .projects-slider__mobile-nav {
     position: absolute;
     top: 12rem;
-    /* Align with counter, just above title */
     right: 2rem;
     left: auto;
     pointer-events: auto;
-    /* Fix unclickable buttons */
+    height: 45px;
+    align-items: center;
   }
 
   .projects-slider__footer {
     position: absolute;
     top: 12rem;
-    /* Exact same top value as nav buttons */
     left: 2rem;
     right: auto;
     bottom: auto;
-    height: auto;
+    height: 45px;
     width: auto;
     flex-direction: row;
+    align-items: center;
   }
 
   .projects-slider__year-container {
@@ -468,7 +528,7 @@
   /* 3. Image Full Width 16:9 */
   .projects-slider__images {
     position: absolute;
-    top: calc(12rem + 3rem + 20px);
+    top: calc(16rem + 3rem + 20px);
     /* Content padding + Title height + margin */
     left: 2rem;
     width: calc(100% - 4rem);

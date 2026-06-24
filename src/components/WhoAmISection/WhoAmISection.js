@@ -48,7 +48,7 @@ export default function WhoAmISection() {
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 35%",
+          start: "top 45%",
         }
       });
 
@@ -61,7 +61,7 @@ export default function WhoAmISection() {
         ease: "power2.out",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 35%",
+          start: "top 45%",
           end: "center center",
           scrub: true,
         }
@@ -74,7 +74,7 @@ export default function WhoAmISection() {
   return (
     <section className="who-am-i-section" ref={sectionRef}>
       <div className="who-am-i-header">
-        <div className="who-am-i-label" ref={labelRef}>( Who Am I )</div>
+        <div className="who-am-i-label" ref={labelRef}>( WhoAmI )</div>
         <CatSprite />
       </div>
       <div className="who-am-i-container">

@@ -11,13 +11,13 @@ export default function Navbar({ onMenuToggle, menuOpen }) {
         </Link>
       </div>
       <div className="nav-links">
-        <Link href="#">ABOUT</Link>
+        <Link href="#">WHOAMI</Link>
         <span className="slash">/</span>{" "}
-        <Link href="#">HOW IT WORKS</Link>
-        <span className="slash">/</span>
-        <Link href="#">ADVANTAGE</Link>
+        <Link href="#">WHAT I SHIP</Link>
         <span className="slash">/</span>
         <Link href="/projects">PROJECTS</Link>
+        <span className="slash">/</span>
+        <Link href="#">WHY CHOOSE ME</Link>
       </div>
       <button className="cta-button">GET IN TOUCH</button>
       {/* Unique Asymmetric Menu Toggle (Mobile Only) */}
