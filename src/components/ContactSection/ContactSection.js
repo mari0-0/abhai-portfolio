@@ -34,7 +34,7 @@ export default function ContactSection() {
   return (
     <section className="contact-section" id="contact" ref={sectionRef}>
       <div className="contact-label-wrap" ref={labelRef}>
-        <span className="contact-label">( Contact )</span>
+        <span className="contact-label">( Get in Touch )</span>
       </div>
       <div className="contact-container" ref={containerRef}>
         <div className="contact-left">

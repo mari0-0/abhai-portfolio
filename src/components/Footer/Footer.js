@@ -213,6 +213,7 @@ export default function Footer() {
           <div className="footer-links left-links">
             <h3 className="footer-subtitle">Let's work together</h3>
             {[
+              { label: "Get in Touch", href: "/#contact" },
               { label: "abhaimatta@gmail.com", href: "mailto:abhaimatta@gmail.com" },
               { label: "WhatsApp", href: "https://wa.me/919026137470" },
               { label: "LinkedIn", href: "https://www.linkedin.com/in/abhaimatta" },

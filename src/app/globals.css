@@ -32,6 +32,10 @@
   --font-secondary: "Inter", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

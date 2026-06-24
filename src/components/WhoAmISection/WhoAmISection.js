@@ -74,7 +74,7 @@ export default function WhoAmISection() {
   }, []);
 
   return (
-    <section className="who-am-i-section" ref={sectionRef}>
+    <section className="who-am-i-section" id="whoami" ref={sectionRef}>
       <div className="who-am-i-header">
         <div className="who-am-i-label" ref={labelRef}>( WhoAmI )</div>
         <CatSprite />

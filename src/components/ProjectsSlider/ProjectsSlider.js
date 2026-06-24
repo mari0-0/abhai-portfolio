@@ -199,7 +199,7 @@ export default function ProjectsSlider() {
   };
 
   return (
-    <div ref={containerRef} style={{ height: isMobile ? "auto" : `${projects.length * 100}vh`, minHeight: "100vh", position: "relative" }}>
+    <div id="projects" ref={containerRef} style={{ height: isMobile ? "auto" : `${projects.length * 100}vh`, minHeight: "100vh", position: "relative" }}>
       <div className="projects-slider" style={{ position: isMobile ? "relative" : "sticky", top: 0, height: isMobile ? "auto" : "100vh", minHeight: "100vh", overflowY: isMobile ? "visible" : "hidden", overflowX: "hidden" }}>
 
         <div className="projects-slider__label">( Projects )</div>

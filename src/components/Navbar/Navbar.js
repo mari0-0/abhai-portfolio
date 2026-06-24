@@ -11,15 +11,15 @@ export default function Navbar({ onMenuToggle, menuOpen }) {
         </Link>
       </div>
       <div className="nav-links">
-        <Link href="#">WHOAMI</Link>
+        <Link href="/#whoami">WHOAMI</Link>
         <span className="slash">/</span>{" "}
-        <Link href="#">WHAT I SHIP</Link>
+        <Link href="/#whatiship">WHAT I SHIP</Link>
         <span className="slash">/</span>
-        <Link href="/projects">PROJECTS</Link>
+        <Link href="/#projects">PROJECTS</Link>
         <span className="slash">/</span>
-        <Link href="#">WHY CHOOSE ME</Link>
+        <Link href="/#whychooseme">WHY CHOOSE ME</Link>
       </div>
-      <button className="cta-button">GET IN TOUCH</button>
+      <Link href="/#contact" className="cta-button">GET IN TOUCH</Link>
       {/* Unique Asymmetric Menu Toggle (Mobile Only) */}
       <button
         className={`menu-toggle${menuOpen ? " is-open" : ""}`}

@@ -98,7 +98,7 @@ export default function WhatIShipSection() {
   }, []);
 
   return (
-    <section className="what-i-ship-section" ref={sectionRef}>
+    <section className="what-i-ship-section" id="whatiship" ref={sectionRef}>
       {/* Container that gets pinned */}
       <div className="what-i-ship-pinned" ref={containerRef}>
 

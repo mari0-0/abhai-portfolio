@@ -31,29 +31,20 @@ export default function MobileMenuOverlay({ isOpen, onClose }) {
       </div>
 
       <div className="mobile-menu__links">
-        <Link href="#" className="mobile-menu__item" onClick={onClose}>
-          <span className="mobile-menu__label">Our Story</span>
-          <span className="mobile-menu__title">Home</span>
+        <Link href="/#whoami" className="mobile-menu__item" onClick={onClose}>
+          <span className="mobile-menu__title">WHOAMI</span>
         </Link>
-        <Link href="#" className="mobile-menu__item" onClick={onClose}>
-          <span className="mobile-menu__label">Case Studies</span>
-          <span className="mobile-menu__title">Work</span>
+        <Link href="/#whatiship" className="mobile-menu__item" onClick={onClose}>
+          <span className="mobile-menu__title">WHAT I SHIP</span>
         </Link>
-        <Link href="#" className="mobile-menu__item" onClick={onClose}>
-          <span className="mobile-menu__label">What We Do</span>
-          <span className="mobile-menu__title">Services</span>
+        <Link href="/#projects" className="mobile-menu__item" onClick={onClose}>
+          <span className="mobile-menu__title">PROJECTS</span>
         </Link>
-        <Link href="#" className="mobile-menu__item" onClick={onClose}>
-          <span className="mobile-menu__label">Thought Leadership</span>
-          <span className="mobile-menu__title">Insights</span>
+        <Link href="/#whychooseme" className="mobile-menu__item" onClick={onClose}>
+          <span className="mobile-menu__title">WHY CHOOSE ME</span>
         </Link>
-        <Link href="#" className="mobile-menu__item" onClick={onClose}>
-          <span className="mobile-menu__label">Who We Are</span>
-          <span className="mobile-menu__title">About</span>
-        </Link>
-        <Link href="#" className="mobile-menu__item" onClick={onClose}>
-          <span className="mobile-menu__label">Get in Touch</span>
-          <span className="mobile-menu__title">Contact</span>
+        <Link href="/#contact" className="mobile-menu__item" onClick={onClose}>
+          <span className="mobile-menu__title">GET IN TOUCH</span>
         </Link>
       </div>
 
