@@ -12,7 +12,8 @@
 
 .contact-container {
   width: 100%;
-  max-width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -24,7 +25,7 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  max-width: 500px;
+  max-width: 650px;
 }
 
 .contact-socials {
@@ -35,7 +36,7 @@
 
 .contact-social-link {
   font-family: var(--font-secondary);
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
   color: var(--color-text-primary);
   text-decoration: none;
   opacity: 0.8;

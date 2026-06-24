@@ -36,10 +36,10 @@ export default function ContactSection() {
         <div className="contact-left">
           <div className="contact-heading-wrap">
             <span className="contact-label">( Contact )</span>
-            <h2 className="contact-heading">Big Ideas Deserve Great Execution.</h2>
+            <h2 className="contact-heading">Big Ideas Deserve<br />Great Execution.</h2>
           </div>
           <div className="contact-socials">
-            <a href="mailto:abhaimatta@gmail.com" className="contact-social-link">Email</a>
+            <a href="mailto:abhaimatta@gmail.com" className="contact-social-link">abhaimatta@gmail.com</a>
             <a href="https://wa.me/919026137470" target="_blank" rel="noopener noreferrer" className="contact-social-link">WhatsApp (+919026137470)</a>
             <a href="https://www.linkedin.com/in/abhaimatta" target="_blank" rel="noopener noreferrer" className="contact-social-link">LinkedIn</a>
           </div>
