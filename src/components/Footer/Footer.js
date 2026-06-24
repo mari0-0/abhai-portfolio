@@ -214,6 +214,7 @@ export default function Footer() {
             <h3 className="footer-subtitle">Let's work together</h3>
             {[
               { label: "abhaimatta@gmail.com", href: "mailto:abhaimatta@gmail.com" },
+              { label: "WhatsApp", href: "https://wa.me/919026137470" },
               { label: "LinkedIn", href: "https://www.linkedin.com/in/abhaimatta" },
               { label: "GitHub", href: "https://github.com/mari0-0" },
             ].map((link, index) => (

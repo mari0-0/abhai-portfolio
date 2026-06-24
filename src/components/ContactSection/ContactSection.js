@@ -33,45 +33,54 @@ export default function ContactSection() {
   return (
     <section className="contact-section" id="contact" ref={sectionRef}>
       <div className="contact-container" ref={containerRef}>
-        <div className="contact-heading-wrap">
-          <span className="contact-label">( Contact )</span>
-          <h2 className="contact-heading">Big Ideas Deserve Great Execution.</h2>
+        <div className="contact-left">
+          <div className="contact-heading-wrap">
+            <span className="contact-label">( Contact )</span>
+            <h2 className="contact-heading">Big Ideas Deserve Great Execution.</h2>
+          </div>
+          <div className="contact-socials">
+            <a href="mailto:abhaimatta@gmail.com" className="contact-social-link">Email</a>
+            <a href="https://wa.me/919026137470" target="_blank" rel="noopener noreferrer" className="contact-social-link">WhatsApp (+919026137470)</a>
+            <a href="https://www.linkedin.com/in/abhaimatta" target="_blank" rel="noopener noreferrer" className="contact-social-link">LinkedIn</a>
+          </div>
         </div>
 
-        <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-          <div className="contact-input-group">
-            <div className="contact-row">
-              <div className="contact-input-wrap">
-                <input
-                  type="text"
-                  className="contact-input"
-                  placeholder="Your Name"
-                  required
-                />
+        <div className="contact-right">
+          <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
+            <div className="contact-input-group">
+              <div className="contact-row">
+                <div className="contact-input-wrap">
+                  <input
+                    type="text"
+                    className="contact-input"
+                    placeholder="Your Name"
+                    required
+                  />
+                </div>
+                <div className="contact-input-wrap">
+                  <input
+                    type="email"
+                    className="contact-input"
+                    placeholder="Your Email"
+                    required
+                  />
+                </div>
               </div>
+              
               <div className="contact-input-wrap">
-                <input
-                  type="email"
-                  className="contact-input"
-                  placeholder="Your Email"
+                <textarea
+                  className="contact-textarea"
+                  placeholder="Tell me about your project..."
                   required
-                />
+                ></textarea>
               </div>
             </div>
-            
-            <div className="contact-input-wrap">
-              <textarea
-                className="contact-textarea"
-                placeholder="Tell me about your project..."
-                required
-              ></textarea>
-            </div>
-          </div>
 
-          <button type="submit" className="contact-submit">
-            Send Message
-          </button>
-        </form>
+            <button type="submit" className="contact-submit">
+              Send Message
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );
