@@ -112,6 +112,8 @@ function escChar(ch) {
 
 export default function AsciiHands() {
   const sectionRef = useRef(null);
+  const leftHandRef = useRef(null);
+  const rightHandRef = useRef(null);
   const leftPreRef = useRef(null);
   const rightPreRef = useRef(null);
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
@@ -230,6 +232,47 @@ export default function AsciiHands() {
     };
     window.addEventListener('mousemove', onGlobalMouseMove);
 
+    // --- GSAP ScrollTrigger entrance ---
+    let gsapCtx;
+    import('gsap').then(({ gsap }) => {
+      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsapCtx = gsap.context(() => {
+          // Start hands off-screen
+          gsap.set(leftHandRef.current, { x: '-60%', opacity: 0 });
+          gsap.set(rightHandRef.current, { x: '60%', opacity: 0 });
+
+          // Slide in on scroll
+          gsap.to(leftHandRef.current, {
+            x: '0%',
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 65%',
+              end: 'top 20%',
+              scrub: 1,
+            },
+          });
+
+          gsap.to(rightHandRef.current, {
+            x: '0%',
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 65%',
+              end: 'top 20%',
+              scrub: 1,
+            },
+          });
+        }, section);
+      });
+    });
+
     // IntersectionObserver — only animate when visible
     const observer = new IntersectionObserver(
       ([entry]) => { isVisibleRef.current = entry.isIntersecting; },
@@ -278,6 +321,7 @@ export default function AsciiHands() {
       section.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mousemove', onGlobalMouseMove);
       observer.disconnect();
+      if (gsapCtx) gsapCtx.revert();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
@@ -285,10 +329,10 @@ export default function AsciiHands() {
   return (
     <section className="ascii-hands-section" ref={sectionRef}>
       <div className="ascii-hands-wrap">
-        <div className="ascii-hand left">
+        <div className="ascii-hand left" ref={leftHandRef}>
           <pre ref={leftPreRef}></pre>
         </div>
-        <div className="ascii-hand right">
+        <div className="ascii-hand right" ref={rightHandRef}>
           <pre ref={rightPreRef}></pre>
         </div>
       </div>
