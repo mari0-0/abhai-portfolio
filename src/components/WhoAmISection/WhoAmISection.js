@@ -30,11 +30,16 @@ export default function WhoAmISection() {
       });
 
       // Words blur reveal on scroll — using the utility
-      blurReveal(textRef.current, sectionRef.current, {
+      const blurAnim = blurReveal(textRef.current, sectionRef.current, {
         start: "top 45%",
         end: "center center",
         highlightIndices: [2, 4, 5, 13, 14, 20, 21],
       });
+
+      // Add a custom cleanup function to context so it reverts our DOM changes
+      return () => {
+        blurAnim.revert();
+      };
     }, sectionRef);
 
     return () => ctx.revert();
