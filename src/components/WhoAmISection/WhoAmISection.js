@@ -3,38 +3,15 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { blurReveal } from "@/utils/blurReveal";
+import "@/utils/blurReveal.css";
 import CatSprite from "./CatSprite";
 import "./WhoAmISection.css";
 
 export default function WhoAmISection() {
   const sectionRef = useRef(null);
   const labelRef = useRef(null);
-  const wordsRef = useRef([]);
-
-  const wordsData = [
-    { text: "I", highlight: false },
-    { text: "am", highlight: false },
-    { text: "Abhai,", highlight: true },
-    { text: "a", highlight: false },
-    { text: "full-stack", highlight: true },
-    { text: "developer", highlight: true },
-    { text: "and", highlight: false },
-    { text: "recent", highlight: false },
-    { text: "graduate.", highlight: false },
-    { text: "I", highlight: false },
-    { text: "specialize", highlight: false },
-    { text: "in", highlight: false },
-    { text: "crafting", highlight: false },
-    { text: "modern,", highlight: true },
-    { text: "interactive", highlight: true },
-    { text: "web", highlight: false },
-    { text: "experiences", highlight: false },
-    { text: "driven", highlight: false },
-    { text: "by", highlight: false },
-    { text: "deep", highlight: false },
-    { text: "practical", highlight: true },
-    { text: "knowledge.", highlight: true },
-  ];
+  const textRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -52,19 +29,11 @@ export default function WhoAmISection() {
         }
       });
 
-      // Words blur reveal on scroll
-      gsap.to(wordsRef.current, {
-        y: 0,
-        opacity: 1,
-        filter: "blur(0px)",
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 45%",
-          end: "center center",
-          scrub: true,
-        }
+      // Words blur reveal on scroll — using the utility
+      blurReveal(textRef.current, sectionRef.current, {
+        start: "top 45%",
+        end: "center center",
+        highlightIndices: [2, 4, 5, 13, 14, 20, 21],
       });
     }, sectionRef);
 
@@ -78,17 +47,8 @@ export default function WhoAmISection() {
         <CatSprite />
       </div>
       <div className="who-am-i-container">
-        <h2 className="who-am-i-text">
-          {wordsData.map((w, i) => (
-            <span key={i} className="word-wrap">
-              <span
-                className={`word ${w.highlight ? 'highlight' : ''}`}
-                ref={el => wordsRef.current[i] = el}
-              >
-                {w.text}
-              </span>
-            </span>
-          ))}
+        <h2 className="who-am-i-text" ref={textRef}>
+          I am Abhai, a full-stack developer and recent graduate. I specialize in crafting modern, interactive web experiences driven by deep practical knowledge.
         </h2>
       </div>
     </section>

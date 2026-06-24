@@ -49,22 +49,8 @@
   row-gap: 0.1em;
 }
 
-.who-am-i-text .highlight {
+.who-am-i-text .blur-reveal-highlight {
   color: var(--color-primary);
-}
-
-.word-wrap {
-  display: inline-flex;
-  padding-bottom: 0.1em;
-  margin-bottom: -0.1em;
-}
-
-.word {
-  opacity: 0;
-  filter: blur(12px);
-  transform: translateY(30px);
-  display: inline-block;
-  will-change: transform, opacity, filter;
 }
 
 @media (max-width: 768px) {

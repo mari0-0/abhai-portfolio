@@ -7,6 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getNextProject, projects } from "@/data/projectsData";
 import Navbar from "@/components/Navbar/Navbar";
 import MobileMenuOverlay from "@/components/MobileMenuOverlay/MobileMenuOverlay";
+import { blurReveal } from "@/utils/blurReveal";
+import "@/utils/blurReveal.css";
 import "./ProjectDetail.css";
 
 /* ── tiny SVG icons ──────────────────────────────────────────── */
@@ -159,18 +161,14 @@ export default function ProjectDetail({ project }) {
         const introTexts = introRef.current.querySelectorAll(
           ".project-intro__text"
         );
-        introTexts.forEach((el, i) => {
-          gsap.from(el, {
-            y: 60,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
-            delay: i * 0.15,
+        introTexts.forEach((el) => {
+          blurReveal(el, el, {
+            start: "top 85%",
+            end: "top 40%",
+            blur: 8,
+            y: 20,
+            scrub: false,
+            split: false,
           });
         });
       }
@@ -182,30 +180,23 @@ export default function ProjectDetail({ project }) {
         const img = el.querySelector(".project-section__image");
 
         if (heading) {
-          gsap.from(heading, {
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: heading,
-              start: "top 85%",
-              toggleActions: "play none none none",
-            },
+          blurReveal(heading, heading, {
+            start: "top 85%",
+            end: "top 50%",
+            blur: 10,
+            y: 25,
+            scrub: false,
+            split: false,
           });
         }
         if (body) {
-          gsap.from(body, {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            delay: 0.1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: body,
-              start: "top 88%",
-              toggleActions: "play none none none",
-            },
+          blurReveal(body, body, {
+            start: "top 88%",
+            end: "top 50%",
+            blur: 6,
+            y: 15,
+            scrub: false,
+            split: false,
           });
         }
         if (img) {

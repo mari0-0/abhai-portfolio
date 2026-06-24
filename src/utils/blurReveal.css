@@ -1,0 +1,18 @@
+/* Blur Reveal — shared styles for the blurReveal() utility */
+.blur-reveal-wrap {
+  display: inline-flex;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.blur-reveal-word {
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(30px);
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+.blur-reveal-highlight {
+  color: var(--color-primary);
+}
