@@ -289,11 +289,11 @@ export default function AsciiHands() {
 
       // --- Parallax ---
       const { x, y } = mouseRef.current;
-      curX += (x - curX) * 0.04;
+      curX += (x - curX) * 0.025;
       curY += (y - curY) * 0.025;
 
-      const offsetY = (curY - 0.5) * 12;
-      const spreadX = (curX - 0.5) * 20;
+      const offsetY = (curY - 0.5) * 20;
+      const spreadX = (curX - 0.5) * 30;
 
       leftPre.style.transform = `translate(${-spreadX}px, ${offsetY}px)`;
       rightPre.style.transform = `translate(${spreadX}px, ${offsetY}px)`;

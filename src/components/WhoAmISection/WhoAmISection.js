@@ -11,7 +11,32 @@ import "./WhoAmISection.css";
 export default function WhoAmISection() {
   const sectionRef = useRef(null);
   const labelRef = useRef(null);
-  const textRef = useRef(null);
+  const wordsRef = useRef([]);
+
+  const wordsData = [
+    { text: "I", highlight: false },
+    { text: "am", highlight: false },
+    { text: "Abhai,", highlight: true },
+    { text: "a", highlight: false },
+    { text: "full-stack", highlight: true },
+    { text: "developer", highlight: true },
+    { text: "and", highlight: false },
+    { text: "recent", highlight: false },
+    { text: "graduate.", highlight: false },
+    { text: "I", highlight: false },
+    { text: "specialize", highlight: false },
+    { text: "in", highlight: false },
+    { text: "crafting", highlight: false },
+    { text: "modern,", highlight: true },
+    { text: "interactive", highlight: true },
+    { text: "web", highlight: false },
+    { text: "experiences", highlight: false },
+    { text: "driven", highlight: false },
+    { text: "by", highlight: false },
+    { text: "deep", highlight: false },
+    { text: "practical", highlight: true },
+    { text: "knowledge.", highlight: true },
+  ];
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -29,17 +54,20 @@ export default function WhoAmISection() {
         }
       });
 
-      // Words blur reveal on scroll — using the utility
-      const blurAnim = blurReveal(textRef.current, sectionRef.current, {
-        start: "top 45%",
-        end: "center center",
-        highlightIndices: [2, 4, 5, 13, 14, 20, 21],
+      // Words blur reveal on scroll
+      gsap.to(wordsRef.current, {
+        y: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 45%",
+          end: "center center",
+          scrub: true,
+        }
       });
-
-      // Add a custom cleanup function to context so it reverts our DOM changes
-      return () => {
-        blurAnim.revert();
-      };
     }, sectionRef);
 
     return () => ctx.revert();
@@ -52,8 +80,17 @@ export default function WhoAmISection() {
         <CatSprite />
       </div>
       <div className="who-am-i-container">
-        <h2 className="who-am-i-text" ref={textRef}>
-          I am Abhai, a full-stack developer and recent graduate. I specialize in crafting modern, interactive web experiences driven by deep practical knowledge.
+        <h2 className="who-am-i-text">
+          {wordsData.map((w, i) => (
+            <span key={i} className="blur-reveal-wrap">
+              <span
+                className={`blur-reveal-word ${w.highlight ? 'blur-reveal-highlight' : ''}`}
+                ref={el => wordsRef.current[i] = el}
+              >
+                {w.text}
+              </span>
+            </span>
+          ))}
         </h2>
       </div>
     </section>
