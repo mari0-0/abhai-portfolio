@@ -15,7 +15,7 @@ export default function Navbar({ onMenuToggle, menuOpen }) {
         <span className="slash">/</span>{" "}
         <Link href="/#whatiship">WHAT I SHIP</Link>
         <span className="slash">/</span>
-        <Link href="/#projects">PROJECTS</Link>
+        <Link href="/projects">PROJECTS</Link>
         <span className="slash">/</span>
         <Link href="/#whychooseme">WHY CHOOSE ME</Link>
       </div>

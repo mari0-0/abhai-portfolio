@@ -228,6 +228,7 @@ a {
   cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(4px);
+  text-decoration: none;
 }
 
 .cta-button:hover {
