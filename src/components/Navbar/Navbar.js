@@ -1,8 +1,26 @@
 "use client";
 
 import { Link } from 'next-transition-router';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar({ onMenuToggle, menuOpen }) {
+  const pathname = usePathname();
+
+  const handleNavClick = (e, targetId) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      const el = document.getElementById(targetId);
+      if (el) {
+        if (window.lenis) {
+          window.lenis.scrollTo(el);
+        } else {
+          el.scrollIntoView();
+        }
+        window.history.pushState(null, "", `/#${targetId}`);
+      }
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="logo">
@@ -11,15 +29,15 @@ export default function Navbar({ onMenuToggle, menuOpen }) {
         </Link>
       </div>
       <div className="nav-links">
-        <Link href="/#whoami">WHOAMI</Link>
+        <Link href="/#whoami" onClick={(e) => handleNavClick(e, 'whoami')}>WHOAMI</Link>
         <span className="slash">/</span>{" "}
-        <Link href="/#whatiship">WHAT I SHIP</Link>
+        <Link href="/#whatiship" onClick={(e) => handleNavClick(e, 'whatiship')}>WHAT I SHIP</Link>
+        <span className="slash">/</span>
+        <Link href="/#whychooseme" onClick={(e) => handleNavClick(e, 'whychooseme')}>WHY CHOOSE ME</Link>
         <span className="slash">/</span>
         <Link href="/projects">PROJECTS</Link>
-        <span className="slash">/</span>
-        <Link href="/#whychooseme">WHY CHOOSE ME</Link>
       </div>
-      <Link href="/#contact" className="cta-button">GET IN TOUCH</Link>
+      <Link href="/#contact" className="cta-button" onClick={(e) => handleNavClick(e, 'contact')}>GET IN TOUCH</Link>
       {/* Unique Asymmetric Menu Toggle (Mobile Only) */}
       <button
         className={`menu-toggle${menuOpen ? " is-open" : ""}`}

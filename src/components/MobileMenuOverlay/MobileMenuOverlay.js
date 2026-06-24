@@ -31,19 +31,19 @@ export default function MobileMenuOverlay({ isOpen, onClose }) {
       </div>
 
       <div className="mobile-menu__links">
-        <Link href="/#whoami" className="mobile-menu__item" onClick={onClose}>
+        <Link href="/#whoami" className="mobile-menu__item" onClick={(e) => { onClose(); if (window.location.pathname === "/") { e.preventDefault(); const el = document.getElementById('whoami'); if (el) { window.lenis ? window.lenis.scrollTo(el) : el.scrollIntoView(); window.history.pushState(null, "", "/#whoami"); } } }}>
           <span className="mobile-menu__title">WHOAMI</span>
         </Link>
-        <Link href="/#whatiship" className="mobile-menu__item" onClick={onClose}>
+        <Link href="/#whatiship" className="mobile-menu__item" onClick={(e) => { onClose(); if (window.location.pathname === "/") { e.preventDefault(); const el = document.getElementById('whatiship'); if (el) { window.lenis ? window.lenis.scrollTo(el) : el.scrollIntoView(); window.history.pushState(null, "", "/#whatiship"); } } }}>
           <span className="mobile-menu__title">WHAT I SHIP</span>
         </Link>
-        <Link href="/#projects" className="mobile-menu__item" onClick={onClose}>
+        <Link href="/projects" className="mobile-menu__item" onClick={onClose}>
           <span className="mobile-menu__title">PROJECTS</span>
         </Link>
-        <Link href="/#whychooseme" className="mobile-menu__item" onClick={onClose}>
+        <Link href="/#whychooseme" className="mobile-menu__item" onClick={(e) => { onClose(); if (window.location.pathname === "/") { e.preventDefault(); const el = document.getElementById('whychooseme'); if (el) { window.lenis ? window.lenis.scrollTo(el) : el.scrollIntoView(); window.history.pushState(null, "", "/#whychooseme"); } } }}>
           <span className="mobile-menu__title">WHY CHOOSE ME</span>
         </Link>
-        <Link href="/#contact" className="mobile-menu__item" onClick={onClose}>
+        <Link href="/#contact" className="mobile-menu__item" onClick={(e) => { onClose(); if (window.location.pathname === "/") { e.preventDefault(); const el = document.getElementById('contact'); if (el) { window.lenis ? window.lenis.scrollTo(el) : el.scrollIntoView(); window.history.pushState(null, "", "/#contact"); } } }}>
           <span className="mobile-menu__title">GET IN TOUCH</span>
         </Link>
       </div>

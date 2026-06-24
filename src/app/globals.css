@@ -33,7 +33,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Lenis handles smooth scrolling; avoid CSS scroll-behavior to prevent conflicts */
 }
 
 * {

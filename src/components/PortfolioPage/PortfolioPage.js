@@ -31,6 +31,22 @@ export default function PortfolioPage() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          if (window.lenis) {
+            window.lenis.scrollTo(el);
+          } else {
+            el.scrollIntoView(); // fallback without smooth behavior
+          }
+        }
+      }, 500);
+    }
+  }, []);
+
+  useEffect(() => {
     if (!canvasContainerRef.current) return;
 
     /* ---------------- SCENE MANAGER ---------------- */
