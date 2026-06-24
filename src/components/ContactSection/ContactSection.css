@@ -5,18 +5,25 @@
   color: var(--color-text-primary);
   padding: 8rem 5rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   z-index: 4;
+}
+
+.contact-label-wrap {
+  width: 100%;
+  margin-bottom: 2rem;
 }
 
 .contact-container {
   width: 100%;
-  max-width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  gap: clamp(4rem, 12vw, 15rem);
+  justify-content: space-between;
+  gap: 4rem;
 }
 
 .contact-left {
@@ -160,13 +167,22 @@
     flex-direction: column;
     gap: 3rem;
   }
-  
+
   .contact-row {
     flex-direction: column;
     gap: 2rem;
   }
-  
+
   .contact-submit {
     width: 100%;
   }
+}
+
+.contact-row {
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-submit {
+  width: 100%;
 }

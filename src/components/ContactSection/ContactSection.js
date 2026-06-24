@@ -8,12 +8,13 @@ import "./ContactSection.css";
 export default function ContactSection() {
   const sectionRef = useRef(null);
   const containerRef = useRef(null);
+  const labelRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      gsap.from(containerRef.current.children, {
+      gsap.from([labelRef.current, ...containerRef.current.children], {
         y: 40,
         opacity: 0,
         duration: 1,
@@ -32,10 +33,12 @@ export default function ContactSection() {
 
   return (
     <section className="contact-section" id="contact" ref={sectionRef}>
+      <div className="contact-label-wrap" ref={labelRef}>
+        <span className="contact-label">( Contact )</span>
+      </div>
       <div className="contact-container" ref={containerRef}>
         <div className="contact-left">
           <div className="contact-heading-wrap">
-            <span className="contact-label">( Contact )</span>
             <h2 className="contact-heading">Big Ideas Deserve<br />Great Execution.</h2>
           </div>
           <div className="contact-socials">
@@ -66,7 +69,7 @@ export default function ContactSection() {
                   />
                 </div>
               </div>
-              
+
               <div className="contact-input-wrap">
                 <textarea
                   className="contact-textarea"
