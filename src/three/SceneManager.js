@@ -32,6 +32,7 @@ export class SceneManager {
     // --- Background Renderer (Shader) ---
     this.bgRenderer = new THREE.WebGLRenderer({
       antialias: false,
+      alpha: true,
     });
     this.bgRenderer.setSize(
       document.documentElement.clientWidth,

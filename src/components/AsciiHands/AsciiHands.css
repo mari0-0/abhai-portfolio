@@ -1,0 +1,66 @@
+.ascii-hands-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-background);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  user-select: none;
+}
+
+.ascii-hands-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+
+.ascii-hand {
+  position: relative;
+}
+
+.ascii-hand.left {
+  text-align: right;
+  margin-left: -2vw;
+}
+
+.ascii-hand.right {
+  text-align: left;
+  margin-right: -2vw;
+}
+
+.ascii-hand pre {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(0.35rem, 0.5vw, 0.6rem);
+  line-height: 1.1;
+  letter-spacing: 0.5em;
+  color: var(--color-primary);
+  white-space: pre;
+  user-select: none;
+  opacity: 0.7;
+  pointer-events: auto;
+  cursor: default;
+  will-change: transform;
+}
+
+/* Noise highlight — only applied to dynamically inserted spans */
+.ascii-noise {
+  background-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .ascii-hands-section {
+    min-height: 25vh;
+  }
+
+  .ascii-hand pre {
+    font-size: clamp(0.2rem, 0.35vw, 0.4rem);
+    letter-spacing: 0.3em;
+  }
+}

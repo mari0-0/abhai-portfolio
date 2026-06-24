@@ -6,7 +6,6 @@ import { SceneManager } from "@/three/SceneManager";
 import { Environment } from "@/three/Environment";
 import { TrailManager } from "@/three/TrailManager";
 import { loadRevealingModel } from "@/three/ModelLoader";
-import { createBackgroundShader } from "@/three/shaders/BackgroundShader";
 import { createFluidUniforms } from "@/three/shaders/FluidReveal";
 import {
   createFadingWireframeMaterial,
@@ -22,6 +21,7 @@ import WhatIShipSection from "@/components/WhatIShipSection/WhatIShipSection";
 import WhoAmISection from "@/components/WhoAmISection/WhoAmISection";
 import SeeMoreWorkSection from "@/components/SeeMoreWorkSection/SeeMoreWorkSection";
 import WhyChooseMeSection from "@/components/WhyChooseMeSection/WhyChooseMeSection";
+import AsciiHands from "@/components/AsciiHands/AsciiHands";
 import Footer from "@/components/Footer/Footer";
 
 export default function PortfolioPage() {
@@ -113,21 +113,7 @@ export default function PortfolioPage() {
     };
 
     /* ---------------- BACKGROUND SHADER ---------------- */
-    const bgMaterial = createBackgroundShader();
-    const bgGeometry = new THREE.PlaneGeometry(2, 2);
-    const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-    sceneManager.bgScene.add(bgMesh);
-
-    // Setup resize for the uniform to keep the waves proportional
-    const onBgResize = () => {
-      if (bgMaterial.uniforms.uResolution) {
-        bgMaterial.uniforms.uResolution.value.set(
-          document.documentElement.clientWidth,
-          window.innerHeight
-        );
-      }
-    };
-    window.addEventListener("resize", onBgResize);
+    // Background shader removed
 
     /* ---------------- TRAIL MANAGER ---------------- */
     const trailManager = new TrailManager(sceneManager.camera, globalParams);
@@ -233,10 +219,6 @@ export default function PortfolioPage() {
       const delta = sceneManager.getDelta();
       const elapsedTime = sceneManager.getElapsedTime();
 
-      // Background Time Update
-      if (bgMaterial.uniforms.uTime)
-        bgMaterial.uniforms.uTime.value = elapsedTime;
-
       scanFluidUniforms.uTime.value = elapsedTime;
       fadingFluidUniforms.uTime.value = elapsedTime;
 
@@ -287,7 +269,7 @@ export default function PortfolioPage() {
     /* ---------------- CLEANUP ---------------- */
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", onBgResize);
+
       trailManager.dispose();
       sceneManager.dispose();
       window.portfolio3DLoaded = false;
@@ -324,6 +306,9 @@ export default function PortfolioPage() {
 
       {/* Who Am I Section */}
       <WhoAmISection />
+
+      {/* ASCII Hands Section */}
+      <AsciiHands />
 
       {/* What I Ship Section */}
       <WhatIShipSection />
