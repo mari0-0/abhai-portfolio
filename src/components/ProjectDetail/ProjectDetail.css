@@ -75,7 +75,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 4rem;
+  padding: 2rem 5rem;
 }
 
 .project-hero__back {
@@ -284,7 +284,7 @@
 .project-intro {
   position: relative;
   background: var(--color-background);
-  padding: 8rem 4rem 6rem;
+  padding: 8rem 5rem 6rem;
   min-height: 100vh;
 }
 
@@ -325,7 +325,7 @@
 .project-content {
   position: relative;
   background: var(--color-background);
-  padding: 0 4rem 6rem;
+  padding: 0 5rem 6rem;
   display: flex;
   gap: 4rem;
   min-height: 80vh;
