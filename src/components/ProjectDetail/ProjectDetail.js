@@ -163,7 +163,7 @@ export default function ProjectDetail({ project }) {
         );
         introTexts.forEach((el) => {
           blurReveal(el, el, {
-            start: "top 85%",
+            start: "top 70%",
             end: "top 40%",
             blur: 8,
             y: 20,
@@ -181,7 +181,7 @@ export default function ProjectDetail({ project }) {
 
         if (heading) {
           blurReveal(heading, heading, {
-            start: "top 85%",
+            start: "top 75%",
             end: "top 50%",
             blur: 10,
             y: 25,
@@ -191,7 +191,7 @@ export default function ProjectDetail({ project }) {
         }
         if (body) {
           blurReveal(body, body, {
-            start: "top 88%",
+            start: "top 80%",
             end: "top 50%",
             blur: 6,
             y: 15,
