@@ -12,12 +12,11 @@
 
 .contact-container {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: 4rem;
+  justify-content: flex-start;
+  gap: clamp(4rem, 12vw, 15rem);
 }
 
 .contact-left {
