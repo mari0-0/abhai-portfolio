@@ -21,6 +21,7 @@ import WhatIShipSection from "@/components/WhatIShipSection/WhatIShipSection";
 import WhoAmISection from "@/components/WhoAmISection/WhoAmISection";
 import SeeMoreWorkSection from "@/components/SeeMoreWorkSection/SeeMoreWorkSection";
 import WhyChooseMeSection from "@/components/WhyChooseMeSection/WhyChooseMeSection";
+import ContactSection from "@/components/ContactSection/ContactSection";
 import AsciiHands from "@/components/AsciiHands/AsciiHands";
 import Footer from "@/components/Footer/Footer";
 
@@ -318,6 +319,9 @@ export default function PortfolioPage() {
 
       {/* Why Choose Me Section */}
       <WhyChooseMeSection />
+
+      {/* Contact Section */}
+      <ContactSection />
 
       {/* Footer */}
       <Footer />
