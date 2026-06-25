@@ -64,13 +64,12 @@ export default function Footer() {
         // Ensure default rotation is set properly so it faces forward
         maskGroup.rotation.set(baseMaskRot.x, baseMaskRot.y, baseMaskRot.z);
         maskGroup.userData.baseRot = { ...baseMaskRot }; // Save for animate loop
-        
         const isMobile = window.innerWidth <= 768;
-        const scale = isMobile ? 0.005 : 0.008;
-        const posY = isMobile ? -0.2 : 0.5;
-        
-        maskGroup.scale.set(scale, scale, scale);
-        maskGroup.position.set(0, posY, 0);
+        const scaleVal = isMobile ? 0.004 : 0.008;
+        const yPos = isMobile ? -0.5 : 0.5;
+
+        maskGroup.scale.set(scaleVal, scaleVal, scaleVal);
+        maskGroup.position.set(0, yPos, 0);
 
         // Keep the original materials and textures from the GLB
         // Optionally adjust existing materials if needed:
@@ -218,7 +217,6 @@ export default function Footer() {
           <div className="footer-links left-links">
             <h3 className="footer-subtitle">Let's work together</h3>
             {[
-              { label: "Get in Touch", href: "/#contact" },
               { label: "abhaimatta@gmail.com", href: "mailto:abhaimatta@gmail.com" },
               { label: "WhatsApp", href: "https://wa.me/919026137470" },
               { label: "LinkedIn", href: "https://www.linkedin.com/in/abhaimatta" },
@@ -250,7 +248,7 @@ export default function Footer() {
                 href={link.href}
                 className="footer-link-item"
                 data-text={link.label}
-                ref={el => linksRef.current[3 + index] = el}
+                ref={el => linksRef.current[4 + index] = el}
               >
                 <span>{link.label}</span>
               </a>
