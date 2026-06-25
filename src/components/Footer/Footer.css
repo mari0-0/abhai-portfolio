@@ -148,16 +148,14 @@
   }
 
   .footer-title {
-    font-size: 27vw;
+    font-size: 30vw;
     letter-spacing: -0.02em;
     flex-wrap: wrap;
     line-height: 0.8;
   }
-  
-  .footer-title span:nth-child(6) {
-    flex-basis: 100%;
-    height: 0;
-    overflow: hidden;
+
+  .footer-title span:nth-child(n+6) {
+    display: none;
   }
 
   .footer-top {
