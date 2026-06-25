@@ -7,7 +7,7 @@ export default function MobileMenuOverlay({ isOpen, onClose }) {
     <div id="mobile-menu" className={`mobile-menu${isOpen ? " is-open" : ""}`}>
       <div className="mobile-menu__header">
         <div className="mobile-menu__logo">
-          <img src="/assets/logo-light.svg" alt="Logo" />
+          <img src="/assets/logo.svg" alt="Logo" />
         </div>
         <button
           className="menu-close"
@@ -51,10 +51,10 @@ export default function MobileMenuOverlay({ isOpen, onClose }) {
       <div className="mobile-menu__footer">
         <span className="mobile-menu__footer-label">Follow our journey</span>
         <div className="mobile-menu__socials">
-          <a href="#">Behance</a>
-          <a href="#">Instagram</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Dribbble</a>
+          <a href="mailto:abhaimatta@gmail.com">Email</a>
+          <a href="https://wa.me/919026137470" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="https://www.linkedin.com/in/abhaimatta" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/mari0-0" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
     </div>
