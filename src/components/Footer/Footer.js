@@ -64,8 +64,13 @@ export default function Footer() {
         // Ensure default rotation is set properly so it faces forward
         maskGroup.rotation.set(baseMaskRot.x, baseMaskRot.y, baseMaskRot.z);
         maskGroup.userData.baseRot = { ...baseMaskRot }; // Save for animate loop
-        maskGroup.scale.set(0.008, 0.008, 0.008); // Reduced scale
-        maskGroup.position.set(0, 0.5, 0);
+        
+        const isMobile = window.innerWidth <= 768;
+        const scale = isMobile ? 0.005 : 0.008;
+        const posY = isMobile ? -0.2 : 0.5;
+        
+        maskGroup.scale.set(scale, scale, scale);
+        maskGroup.position.set(0, posY, 0);
 
         // Keep the original materials and textures from the GLB
         // Optionally adjust existing materials if needed:

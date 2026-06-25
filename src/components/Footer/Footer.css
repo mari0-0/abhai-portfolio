@@ -148,7 +148,16 @@
   }
 
   .footer-title {
-    font-size: 18vw;
+    font-size: 15vw;
     letter-spacing: -0.02em;
+  }
+
+  .footer-top {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .right-links {
+    align-self: flex-end;
   }
 }
