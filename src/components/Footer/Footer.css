@@ -148,10 +148,14 @@
   }
 
   .footer-title {
-    font-size: 30vw;
+    font-size: 35vw;
     letter-spacing: -0.02em;
     flex-wrap: wrap;
     line-height: 0.8;
+  }
+
+  .footer-canvas-container {
+    display: none;
   }
 
   .footer-title span:nth-child(n+6) {
