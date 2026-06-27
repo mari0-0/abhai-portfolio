@@ -55,6 +55,16 @@ export default function ProjectDetail({ project }) {
   const [isHoveringNext, setIsHoveringNext] = useState(false);
   const [isHoveringHero, setIsHoveringHero] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const heroSrc = isMobile && project.thumbnailMobile ? project.thumbnailMobile : project.heroImage;
 
   const heroCursorRef = useRef(null);
   const nextCursorRef = useRef(null);
@@ -274,15 +284,15 @@ export default function ProjectDetail({ project }) {
             }
           }}
         >
-          {isVideo(project.heroImage) ? (
+          {isVideo(heroSrc) ? (
             <video
-              src={project.heroImage}
+              src={heroSrc}
               className="project-hero__image"
               autoPlay loop muted playsInline style={{ objectFit: 'cover' }}
             />
           ) : (
             <img
-              src={project.heroImage}
+              src={heroSrc}
               alt={project.title}
               className="project-hero__image"
             />
