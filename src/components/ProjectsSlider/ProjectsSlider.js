@@ -6,6 +6,13 @@ import { projects } from "@/data/projectsData";
 import "./ProjectsSlider.css";
 import { useTransitionRouter, Link } from "next-transition-router";
 
+const getThumbnail = (proj, isMobile) => {
+  if (isMobile && proj.thumbnailMobile) return proj.thumbnailMobile;
+  return proj.thumbnail || proj.heroImage;
+};
+
+const isVideo = (url) => url && url.endsWith('.mp4');
+
 export default function ProjectsSlider() {
   const router = useTransitionRouter();
   const [activeIdx, setActiveIdx] = useState(0);
@@ -380,7 +387,11 @@ export default function ProjectsSlider() {
                 onMouseMove={() => !isHoveringImage && setIsHoveringImage(true)}
                 onMouseLeave={() => setIsHoveringImage(false)}
               >
-                <img src={proj.heroImage} alt={proj.title} />
+                {isVideo(getThumbnail(proj, isMobile)) ? (
+                  <video src={getThumbnail(proj, isMobile)} autoPlay loop muted playsInline style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }} />
+                ) : (
+                  <img src={getThumbnail(proj, isMobile)} alt={proj.title} />
+                )}
               </div>
             ))}
           </div>
@@ -456,7 +467,11 @@ export default function ProjectsSlider() {
                 <div className="scroller-line" ref={(el) => (scrollerLines.current[i] = el)} />
                 <div className="scroller-thumbnail" ref={(el) => (scrollerThumbs.current[i] = el)}>
                   <div className="scroller-thumbnail-inner">
-                    <img src={proj.heroImage} alt="" />
+                    {isVideo(getThumbnail(proj, isMobile)) ? (
+                      <video src={getThumbnail(proj, isMobile)} autoPlay loop muted playsInline style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                    ) : (
+                      <img src={getThumbnail(proj, isMobile)} alt="" />
+                    )}
                   </div>
                 </div>
               </div>

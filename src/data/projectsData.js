@@ -1,5 +1,56 @@
 export const projects = [
   {
+    slug: "iphone-15-clone",
+    title: "IPHONE 15 PRO",
+    role: "Frontend Developer",
+    services: ["React", "Three.js", "GSAP Animations"],
+    heroImage: "/projects/iphone15_website_clone/hero.mp4",
+    thumbnail: "/projects/iphone15_website_clone/thumb.png",
+    thumbnailMobile: "/projects/iphone15_website_clone/thumb_mobile.png",
+    year: "2024",
+    intro: [
+      "A high-fidelity clone of Apple's iPhone 15 Pro promotional website, built to showcase advanced web animation and 3D rendering capabilities.",
+      "I recreated the intricate scroll-driven animations and 3D interactions using <em>React</em>, <em>Three.js</em> (React Three Fiber), and <em>GSAP</em> to deliver an immersive, Apple-like user experience.",
+    ],
+    outcomesList: [
+      "60fps 3D Rendering",
+      "Custom Video Carousel",
+      "Complex ScrollTrigger Timelines"
+    ],
+    sections: [
+      {
+        id: "hero-section",
+        heading: "Hero Animation & Video Integration",
+        body: "The experience begins with a precise recreation of Apple's cinematic hero section. Using GSAP, the text and UI elements fade in synchronously with the hero video. The video itself is optimized for seamless playback, setting the premium tone immediately upon load.",
+        image: "/projects/iphone15_website_clone/hero.mp4",
+      },
+      {
+        id: "video-carousel",
+        heading: "Custom Video Carousel",
+        body: "A central feature of the clone is the seamless video carousel, allowing users to scrub and swipe through product feature highlights. Built completely from scratch without relying on external carousel libraries, it ensures a buttery smooth navigation experience directly tied to scroll and drag events.",
+        image: "/projects/iphone15_website_clone/features.mp4",
+      },
+      {
+        id: "3d-interactive",
+        heading: "Interactive 3D Experience",
+        body: "Using React Three Fiber, I integrated a highly detailed 3D model of the iPhone 15 Pro. The model dynamically rotates and scales as the user scrolls down the page, providing an interactive product showcase that feels deeply engaging and performant across devices.",
+        image: "/projects/iphone15_website_clone/3d-model.mp4",
+      },
+      {
+        id: "premium-ui",
+        heading: "Premium UI Detail",
+        body: "Every pixel of the layout was meticulously crafted to match Apple's signature design aesthetic. This includes precise typography scaling, deep blacks for OLED pop, subtle glassmorphism effects, and highly refined spacing to create a sense of digital luxury.",
+        image: "/projects/iphone15_website_clone/image.png",
+      },
+      {
+        id: "responsive-design",
+        heading: "Responsive Design",
+        body: "The entire clone is fully responsive. 3D models intelligently downscale, video layouts stack gracefully, and the navigation transforms for a tactile, native-app feel on mobile devices—ensuring the experience is flawless whether viewed on a desktop monitor or a smartphone.",
+        image: "/projects/iphone15_website_clone/image1.png",
+      }
+    ],
+  },
+  {
     slug: "defichain",
     title: "DEFICHAIN",
     role: "Lead Product Designer",

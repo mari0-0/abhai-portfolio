@@ -7,13 +7,22 @@ import { useTransitionRouter } from "next-transition-router";
 import { projects } from "@/data/projectsData";
 import "./SeeMoreWorkSection.css";
 
+const getThumbnail = (proj, isMobile) => {
+  if (isMobile && proj.thumbnailMobile) return proj.thumbnailMobile;
+  return proj.thumbnail || proj.heroImage;
+};
+
+const isVideo = (url) => url && url.endsWith('.mp4');
+
 export default function SeeMoreWorkSection() {
   const ringRef = useRef(null);
   const router = useTransitionRouter();
   const [radius, setRadius] = useState("38vh");
+  const [isMobileView, setIsMobileView] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768);
       if (window.innerWidth <= 768) {
         setRadius("18vh");
       } else if (window.innerWidth <= 1024) {
@@ -95,7 +104,11 @@ export default function SeeMoreWorkSection() {
               style={{ transform: `rotate(${i * 40}deg) translateY(-${radius})` }}
             >
               <div className="see-more-card">
-                <img src={proj.heroImage} alt={proj.title} />
+                {isVideo(getThumbnail(proj, isMobileView)) ? (
+                  <video src={getThumbnail(proj, isMobileView)} autoPlay loop muted playsInline style={{ objectFit: 'cover', width: '100%', height: '100%', borderRadius: 'inherit' }} />
+                ) : (
+                  <img src={getThumbnail(proj, isMobileView)} alt={proj.title} />
+                )}
               </div>
             </div>
           ))}
