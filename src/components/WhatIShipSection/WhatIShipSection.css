@@ -113,49 +113,50 @@
   align-items: flex-end;
 }
 
-.ship-card__testimonial {
-  max-width: 300px;
+.ship-card__highlights {
+  max-width: 450px;
+}
+
+.ship-card__highlights-title {
   font-family: var(--font-secondary);
-  font-size: 0.9rem;
-  line-height: 1.4;
-  opacity: 0.9;
-}
-
-.ship-card__author {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.ship-card__author-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.ship-card__author-info h4 {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.8rem;
+  opacity: 0.8;
 }
 
-.ship-card__author-info p {
-  font-size: 0.8rem;
-  opacity: 0.7;
+.ship-card__highlights-list {
+  font-family: var(--font-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.95;
+  margin: 0;
+  padding-left: 1.2rem;
 }
 
-.ship-card__images {
+.ship-card__highlights-list li {
+  margin-bottom: 0.5rem;
+}
+
+.ship-card__tech-stack {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: flex-end;
+  max-width: 400px;
 }
 
-.ship-card__image-box {
-  width: 120px;
-  height: 120px;
-  border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.1);
+.ship-card__tech-pill {
+  font-family: var(--font-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
@@ -185,15 +186,8 @@
     margin-top: 2rem;
   }
 
-  .ship-card__images {
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-  }
-
-  .ship-card__image-box {
-    flex-shrink: 0;
-    width: 100px;
-    height: 100px;
+  .ship-card__tech-stack {
+    justify-content: flex-start;
+    max-width: 100%;
   }
 }

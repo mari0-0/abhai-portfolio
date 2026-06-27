@@ -8,33 +8,39 @@ import "./WhatIShipSection.css";
 const shipData = [
   {
     id: "01",
-    title: "Branding that drives conversion & funding.",
-    desc: "We clarify your positioning, define a distinctive tone of voice, and build a visual system that works across acquisition and product. Each sprint ships a robust logo, pragmatic brand guidelines, and a social kit so you can launch fast. The goal is simple: perceived value up.",
-    testimonial: "Working with Brand Appart has been an absolute pleasure. Beyond their creativity and professionalism, there's a real sense of kindness and care in everything they do.",
-    authorName: "Jérémy Bendayan",
-    authorRole: "Co-founder & COO @Jaws Group",
-    bgColor: "var(--color-surface)", // Alternatively, a custom blue if requested, but using palette color
+    title: "High-Performance Full Stack Platforms",
+    desc: "I architect and deploy scalable, responsive web applications. By bridging elegant UI/UX design with robust backend microservices, I deliver platforms optimized for speed, user retention, and seamless interactions.",
+    highlights: [
+      "Optimized frontend load speeds by 35% for high-traffic gaming apps.",
+      "Built stateful session management and real-time backend microservices."
+    ],
+    techStack: ["React.js", "Next.js", "Node.js", "Express.js", "Tailwind CSS"],
+    bgColor: "var(--color-surface)",
     textColor: "var(--color-text-primary)",
   },
   {
     id: "02",
-    title: "Product experiences users adopt & keep using",
-    desc: "We start from business goals, map the critical journeys, and prototype what actually moves the needle. Every sprint ships clear flows, a reusable UI library, and a dev-ready. Expect time-to-value down, UX friction down, retention/NPS up.",
-    testimonial: "A huge thank you to the entire team for your outstanding work on our rebranding! We're thrilled to have you as an integral part of the team.",
-    authorName: "Théo Cesarini",
-    authorRole: "CEO & Co-Founder @Incard",
+    title: "Secure Web3 & Blockchain Systems",
+    desc: "I engineer decentralized applications, cross-chain token bridges, and secure multi-currency payment infrastructures. With a deep understanding of EVM mechanics and smart contract vulnerabilities, I ensure zero-loss crypto transactions.",
+    highlights: [
+      "Integrated secure webhooks processing hundreds of daily crypto transactions.",
+      "Conducted deep-dive smart contract audits for reentrancy and overflows."
+    ],
+    techStack: ["Solidity", "Ethers.js", "Hardhat", "Rust", "Smart Contracts"],
     bgColor: "var(--color-primary)",
     textColor: "var(--color-text-primary)",
   },
   {
     id: "03",
-    title: "Websites that tell your story & convert",
-    desc: "Your website is your best salesperson. We design and build high-performance, accessible, and stunning websites using modern frameworks. We ensure it's not just beautiful, but highly optimized for search engines and user experience.",
-    testimonial: "The new website completely changed how our clients perceive us. The interactive elements and smooth transitions make a huge difference.",
-    authorName: "Sarah Jenkins",
-    authorRole: "CMO @TechFlow",
+    title: "Real-Time Distributed Architecture",
+    desc: "I build complex, low-latency systems capable of handling concurrent data synchronization and high-frequency live events. From live casino betting feeds to collaborative workspaces, I ensure real-time data consistency.",
+    highlights: [
+      "Engineered WebSockets and Redis Pub/Sub systems with sub-50ms latency.",
+      "Implemented CRDTs for concurrent edits in collaborative applications."
+    ],
+    techStack: ["WebSockets", "Redis", "Socket.io", "PostgreSQL", "MongoDB"],
     bgColor: "var(--color-secondary)",
-    textColor: "var(--color-background)", // Dark text for yellow background
+    textColor: "var(--color-background)",
   }
 ];
 
@@ -128,23 +134,21 @@ export default function WhatIShipSection() {
                 </div>
 
                 <div className="ship-card__bottom">
-                  <div className="ship-card__testimonial">
-                    <p>{data.testimonial}</p>
-                    <div className="ship-card__author">
-                      <div className="ship-card__author-avatar"></div>
-                      <div className="ship-card__author-info">
-                        <h4>{data.authorName}</h4>
-                        <p>{data.authorRole}</p>
-                      </div>
-                    </div>
+                  <div className="ship-card__highlights">
+                    <h4 className="ship-card__highlights-title">Key Achievements</h4>
+                    <ul className="ship-card__highlights-list">
+                      {data.highlights.map((highlight, i) => (
+                        <li key={i}>{highlight}</li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <div className="ship-card__images">
-                    {/* Placeholder for images as seen in design */}
-                    <div className="ship-card__image-box" style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}></div>
-                    <div className="ship-card__image-box" style={{ backgroundColor: 'rgba(255,255,255,0.15)' }}></div>
-                    <div className="ship-card__image-box" style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}></div>
-                    <div className="ship-card__image-box" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}></div>
+                  <div className="ship-card__tech-stack">
+                    {data.techStack.map((tech, i) => (
+                      <span key={i} className="ship-card__tech-pill">
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
