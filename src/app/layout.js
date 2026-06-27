@@ -27,6 +27,7 @@ export const metadata = {
 import LenisProvider from "@/components/LenisProvider";
 import TransitionProvider from "@/providers/TransitionProvider";
 import CustomScrollbar from "@/components/CustomScrollbar/CustomScrollbar";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function RootLayout({ children }) {
   return (
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
           </TransitionProvider>
           <CustomScrollbar />
         </LenisProvider>
+        <Analytics />
       </body>
     </html>
   );
