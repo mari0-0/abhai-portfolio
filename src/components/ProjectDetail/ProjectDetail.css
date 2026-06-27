@@ -320,6 +320,25 @@
 }
 
 /* ============================================================
+   HERO BELOW INTRO
+   ============================================================ */
+.project-hero-below-intro {
+  padding: 0 5rem;
+  padding-bottom: 6rem;
+  width: 100%;
+  background: var(--color-background);
+  position: relative;
+  z-index: 2;
+}
+
+.project-hero-below-intro__media {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* ============================================================
    CONTENT BODY — SIDEBAR + MAIN + SOCIAL
    ============================================================ */
 .project-content {
@@ -586,6 +605,11 @@
     min-height: auto;
   }
 
+  .project-hero-below-intro {
+    padding: 0 2rem;
+    padding-bottom: 4rem;
+  }
+
   .project-intro__text {
     margin-left: 0;
     max-width: 100%;
@@ -659,6 +683,11 @@
   .project-intro {
     padding: 4rem 1.5rem 3rem;
     min-height: auto;
+  }
+
+  .project-hero-below-intro {
+    padding: 0 1.5rem;
+    padding-bottom: 3rem;
   }
 
   .project-intro__text {

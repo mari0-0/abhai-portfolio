@@ -142,19 +142,20 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
   }
-  
+
   .card-pixel-perfect {
     grid-column: span 2;
     grid-row: span 1;
     min-height: 300px;
   }
-  
-  .card-performance, .card-animations {
+
+  .card-performance,
+  .card-animations {
     grid-column: span 1;
     grid-row: span 1;
     min-height: 250px;
   }
-  
+
   .card-fullstack {
     grid-column: span 2;
     grid-row: span 1;
@@ -166,27 +167,30 @@
   .why-choose-me-section {
     padding: 6rem 2rem;
   }
-  
+
   .bento-grid {
     grid-template-columns: 1fr;
   }
-  
-  .card-pixel-perfect, .card-performance, .card-animations, .card-fullstack {
+
+  .card-pixel-perfect,
+  .card-performance,
+  .card-animations,
+  .card-fullstack {
     grid-column: span 1;
     min-height: 250px;
   }
-  
+
   .bento-card {
     padding: 2rem;
   }
-  
+
   .bento-graphic {
     top: 1.5rem;
     right: 1.5rem;
     width: 45px;
     height: 45px;
   }
-  
+
   .bento-graphic svg {
     width: 20px;
     height: 20px;

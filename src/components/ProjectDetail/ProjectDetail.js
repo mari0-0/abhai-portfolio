@@ -64,7 +64,7 @@ export default function ProjectDetail({ project }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const heroSrc = isMobile && project.thumbnailMobile ? project.thumbnailMobile : project.heroImage;
+  const heroSrc = isMobile && project.thumbnailMobile ? project.thumbnailMobile : (project.thumbnail || project.heroImage);
 
   const heroCursorRef = useRef(null);
   const nextCursorRef = useRef(null);
@@ -295,6 +295,7 @@ export default function ProjectDetail({ project }) {
               src={heroSrc}
               alt={project.title}
               className="project-hero__image"
+              style={heroSrc.endsWith('.svg') ? { objectFit: 'contain', padding: '10%', backgroundColor: '#111' } : {}}
             />
           )}
           <div className="project-hero__overlay" />
@@ -349,6 +350,23 @@ export default function ProjectDetail({ project }) {
               dangerouslySetInnerHTML={{ __html: text }}
             />
           ))}
+        </section>
+
+        {/* ============ HERO IMAGE (Moved Below Intro) ============ */}
+        <section className="project-hero-below-intro">
+          {isVideo(project.heroImage) ? (
+            <video
+              src={project.heroImage}
+              autoPlay loop muted playsInline 
+              className="project-hero-below-intro__media"
+            />
+          ) : (
+            <img
+              src={project.heroImage}
+              alt={`${project.title} Hero`}
+              className="project-hero-below-intro__media"
+            />
+          )}
         </section>
 
         {/* ============ CONTENT BODY ============ */}
