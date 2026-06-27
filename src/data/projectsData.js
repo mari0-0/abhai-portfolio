@@ -1,5 +1,61 @@
 export const projects = [
   {
+    slug: "spinx-club",
+    title: "SPINX CLUB",
+    role: "Full Stack Blockchain Developer (Intern)",
+    services: ["Full Stack Development", "WebSockets", "Wallet Integration", "UI/UX Implementation"],
+    heroImage: "/projects/spinx_club/hero.png",
+    thumbnail: "/projects/spinx_club/thumb.svg",
+    year: "2024",
+    intro: [
+      "SpinX Club is a premium luxury online casino platform I developed during my internship at SixtyNine Galaxies. This project required building a robust full-stack architecture capable of handling high-frequency transactions and real-time multiplayer updates.",
+      "As a Full Stack Blockchain Developer, I was responsible for crafting the responsive frontend UI, integrating secure wallet functionalities for deposits and withdrawals, and setting up WebSocket connections to power live betting feeds and multiplayer gaming environments.",
+    ],
+    outcomesList: [
+      "Real-time WebSocket Integration",
+      "Secure Crypto Wallet System",
+      "Comprehensive Game Portfolio"
+    ],
+    sections: [
+      {
+        id: "luxury-casino-architecture",
+        heading: "Luxury Casino Architecture & UI",
+        body: "The core frontend was designed to evoke a sense of luxury and exclusivity. I implemented a highly responsive, modern interface with smooth navigation, allowing users to seamlessly browse a vast portfolio of in-house games including Blackjack, Dice, Limbo, Mines, Plinko, and Roulette.",
+        image: "/projects/spinx_club/all-games-cards.png",
+      },
+      {
+        id: "real-time-websockets",
+        heading: "Real-time WebSockets & Live Bets",
+        body: "To recreate the thrill of a live casino floor, I integrated WebSockets to stream real-time betting activity across the platform. This feature instantly broadcasts live bets, large multipliers, and user winnings, significantly increasing user engagement and platform transparency.",
+        image: "/projects/spinx_club/live-bets-websocket.png",
+      },
+      {
+        id: "in-house-games",
+        heading: "In-House Game Integrations",
+        body: "I contributed to the frontend logic and styling of multiple in-house games. For instance, the Plinko game features physics-based animations and dynamic multiplier rendering. Each game was optimized to provide immediate feedback and a lag-free experience, crucial for high-stakes online betting.",
+        image: "/projects/spinx_club/game-plinko.png",
+      },
+      {
+        id: "wallet-transactions",
+        heading: "Wallet, Deposits & Withdrawals",
+        body: "A secure financial ecosystem is the backbone of any online casino. I built intuitive interfaces for the integrated wallet, allowing users to easily view their balances, initiate deposits via various crypto networks, and manage automated withdrawals safely and securely.",
+        image: "/projects/spinx_club/wallet-balance.png",
+      },
+      {
+        id: "affiliate-program",
+        heading: "Affiliate Program & User Perks",
+        body: "To drive user acquisition and retention, I implemented the frontend for the affiliate dashboard. This system allows users to generate referral codes, track their referred traffic in real-time, and automatically claim commission perks based on the betting volume of their network.",
+        image: "/projects/spinx_club/affiliate-program.png",
+      },
+      {
+        id: "internship-completion",
+        heading: "Internship Completion & Validation",
+        body: "This project served as the capstone of my industrial internship at SixtyNine Galaxies. Successfully delivering a full-stack, real-time application of this scale validated my skills as a Full Stack Blockchain Developer and provided invaluable experience in building production-ready, high-traffic systems.",
+        image: "/projects/spinx_club/internship-certificate.jpg",
+      }
+    ],
+  },
+  {
     slug: "iphone-15-clone",
     title: "IPHONE 15 PRO",
     role: "Frontend Developer",
