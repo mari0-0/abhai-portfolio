@@ -106,7 +106,7 @@ export default function SeeMoreWorkSection() {
                 {isVideo(getThumbnail(proj)) ? (
                   <video src={getThumbnail(proj)} autoPlay loop muted playsInline style={{ objectFit: 'cover', width: '100%', height: '100%', borderRadius: 'inherit' }} />
                 ) : (
-                  <img src={getThumbnail(proj)} alt={proj.title} />
+                  <img src={getThumbnail(proj)} alt={proj.title} style={getThumbnail(proj).endsWith('.svg') ? { objectFit: 'contain', padding: '1.2rem', backgroundColor: '#111' } : {}} />
                 )}
               </div>
             </div>

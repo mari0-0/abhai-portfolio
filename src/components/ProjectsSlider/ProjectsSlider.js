@@ -390,7 +390,7 @@ export default function ProjectsSlider() {
                 {isVideo(getThumbnail(proj, isMobile)) ? (
                   <video src={getThumbnail(proj, isMobile)} autoPlay loop muted playsInline style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }} />
                 ) : (
-                  <img src={getThumbnail(proj, isMobile)} alt={proj.title} />
+                  <img src={getThumbnail(proj, isMobile)} alt={proj.title} style={getThumbnail(proj, isMobile).endsWith('.svg') ? { objectFit: 'contain', padding: '3rem', backgroundColor: '#111' } : {}} />
                 )}
               </div>
             ))}
@@ -470,7 +470,7 @@ export default function ProjectsSlider() {
                     {isVideo(getThumbnail(proj, isMobile)) ? (
                       <video src={getThumbnail(proj, isMobile)} autoPlay loop muted playsInline style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
                     ) : (
-                      <img src={getThumbnail(proj, isMobile)} alt="" />
+                      <img src={getThumbnail(proj, isMobile)} alt="" style={getThumbnail(proj, isMobile).endsWith('.svg') ? { objectFit: 'contain', padding: '0.4rem', backgroundColor: '#111' } : {}} />
                     )}
                   </div>
                 </div>
