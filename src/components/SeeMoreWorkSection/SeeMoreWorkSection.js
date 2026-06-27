@@ -7,9 +7,8 @@ import { useTransitionRouter } from "next-transition-router";
 import { projects } from "@/data/projectsData";
 import "./SeeMoreWorkSection.css";
 
-const getThumbnail = (proj, isMobile) => {
-  if (isMobile && proj.thumbnailMobile) return proj.thumbnailMobile;
-  return proj.thumbnail || proj.heroImage;
+const getThumbnail = (proj) => {
+  return proj.thumbnailMobile || proj.thumbnail || proj.heroImage;
 };
 
 const isVideo = (url) => url && url.endsWith('.mp4');
@@ -104,10 +103,10 @@ export default function SeeMoreWorkSection() {
               style={{ transform: `rotate(${i * 40}deg) translateY(-${radius})` }}
             >
               <div className="see-more-card">
-                {isVideo(getThumbnail(proj, isMobileView)) ? (
-                  <video src={getThumbnail(proj, isMobileView)} autoPlay loop muted playsInline style={{ objectFit: 'cover', width: '100%', height: '100%', borderRadius: 'inherit' }} />
+                {isVideo(getThumbnail(proj)) ? (
+                  <video src={getThumbnail(proj)} autoPlay loop muted playsInline style={{ objectFit: 'cover', width: '100%', height: '100%', borderRadius: 'inherit' }} />
                 ) : (
-                  <img src={getThumbnail(proj, isMobileView)} alt={proj.title} />
+                  <img src={getThumbnail(proj)} alt={proj.title} />
                 )}
               </div>
             </div>
