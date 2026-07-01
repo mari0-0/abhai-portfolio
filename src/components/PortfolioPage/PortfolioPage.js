@@ -74,8 +74,8 @@ export default function PortfolioPage() {
     const diffuseMap = textureLoader.load("/textures/head/diffuse.png");
     diffuseMap.colorSpace = THREE.SRGBColorSpace;
     const normalMap = textureLoader.load("/textures/head/normal.png");
-    const roughnessMap = textureLoader.load("/textures/head/alpha_and_roughness.png");
-    const alphaMap = textureLoader.load("/textures/head/alpha_and_roughness.png");
+    const roughnessMap = textureLoader.load("/textures/head/alpha_and_roughness.jpg");
+    const alphaMap = textureLoader.load("/textures/head/alpha_and_roughness.jpg");
     const depthMap = textureLoader.load("/textures/head/depth.png");
 
     /* ---------------- INDEPENDENT PARAMETERS ---------------- */
@@ -107,7 +107,7 @@ export default function PortfolioPage() {
       zcut: -100,
       fadeSpeed: 2.0,
       wireframeColor: new THREE.Color(0x222222),
-      wireframeOpacity: 0.02,
+      wireframeOpacity: 0.03,
     };
 
     /* ---------------- BACKGROUND SHADER ---------------- */
