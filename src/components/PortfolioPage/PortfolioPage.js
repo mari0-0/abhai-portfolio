@@ -71,31 +71,12 @@ export default function PortfolioPage() {
     /* ---------------- TEXTURES ---------------- */
     const textureLoader = new THREE.TextureLoader();
 
-    const diffuseMap = textureLoader.load("/textures/head/diffuse.webp");
+    const diffuseMap = textureLoader.load("/textures/head/diffuse.png");
     diffuseMap.colorSpace = THREE.SRGBColorSpace;
-    const normalMap = textureLoader.load("/textures/head/normal.webp");
-    const roughnessMap = textureLoader.load("/textures/head/roughness.webp");
-    const alphaMap = textureLoader.load("/textures/head/alpha.webp");
-    const depthMap = textureLoader.load("/textures/head/depth.webp");
-
-    const helmetBaseColor = textureLoader.load(
-      "/textures/helmet/gold/baseColor.webp"
-    );
-    helmetBaseColor.colorSpace = THREE.SRGBColorSpace;
-    const helmetMetallic = textureLoader.load(
-      "/textures/helmet/mettalic.webp"
-    );
-    const helmetNormal = textureLoader.load("/textures/helmet/normal.webp");
-    const helmetRoughness = textureLoader.load(
-      "/textures/helmet/roughness.webp"
-    );
-
-    [helmetBaseColor, helmetMetallic, helmetNormal, helmetRoughness].forEach(
-      (tex) => {
-        tex.center.set(0.5, 0.5);
-        tex.rotation = Math.PI / 2;
-      }
-    );
+    const normalMap = textureLoader.load("/textures/head/normal.png");
+    const roughnessMap = textureLoader.load("/textures/head/alpha_and_roughness.png");
+    const alphaMap = textureLoader.load("/textures/head/alpha_and_roughness.png");
+    const depthMap = textureLoader.load("/textures/head/depth.png");
 
     /* ---------------- INDEPENDENT PARAMETERS ---------------- */
     const globalParams = {
@@ -126,7 +107,7 @@ export default function PortfolioPage() {
       zcut: -100,
       fadeSpeed: 2.0,
       wireframeColor: new THREE.Color(0x222222),
-      wireframeOpacity: 0.1,
+      wireframeOpacity: 0.02,
     };
 
     /* ---------------- BACKGROUND SHADER ---------------- */
@@ -152,10 +133,10 @@ export default function PortfolioPage() {
     const faceGeometry = new THREE.PlaneGeometry(1.2, 1.2, 200, 200);
     const face = new THREE.Mesh(faceGeometry, faceMaterial);
 
-    const baseFacePos = { x: 0, y: -0.15, z: 0 };
+    const baseFacePos = { x: 0, y: -0.25, z: 0 };
     face.position.set(baseFacePos.x, baseFacePos.y, baseFacePos.z);
     face.scale.set(4, 4, 4);
-
+    face.rotation.set(0, Math.PI, 0);
     sceneManager.scene.add(face);
 
     /* ---------------- FLUID & SHADERS ---------------- */
@@ -173,7 +154,7 @@ export default function PortfolioPage() {
     );
 
     /* ---------------- LOAD MASK MODEL ---------------- */
-    const baseMaskPos = { x: 0, y: 0.04, z: 0.53 };
+    const baseMaskPos = { x: 0, y: 0.3, z: 0.7 };
     const baseMaskRot = { x: -Math.PI / 2, y: 0, z: 0 };
 
     let maskGroups = null;
